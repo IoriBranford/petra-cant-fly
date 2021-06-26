@@ -1,0 +1,14 @@
+{
+	"Lua.runtime.path": [
+		"scripts/?.lua",
+		"scripts/?/init.lua",
+		"libraries/?.lua",
+		"libraries/?/init.lua",
+		"?.lua",
+		"?/init.lua",
+		"?/?.lua",
+	],
+	"Lua.workspace.ignoreDir": [
+		".vscode",
+	]
+}

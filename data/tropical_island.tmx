@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="36" nextobjectid="2">
+ <editorsettings>
+  <export target="tropical_island.lua" format="lua"/>
+ </editorsettings>
+ <tileset firstgid="1" source="tilesets/tropical_island.tsx"/>
+ <group id="28" name="bg">
+  <layer id="1" name="sky" width="32" height="16">
+   <properties>
+    <property name="dx" type="float" value="0"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxzZ2BgcB/FA4bDBhinDjAuGWDcPMB40gDjhQOMR8EoGAUDBwDcAHdB
+  </data>
+  </layer>
+  <layer id="2" name="cloudsA" width="32" height="16">
+   <properties>
+    <property name="dx" type="float" value="-0.25"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjFSQDMQpA0gXAXHxANKjYBSMZAAAarMawQ==
+  </data>
+  </layer>
+  <layer id="35" name="cloudsB" width="32" height="16" offsetx="1024" offsety="0">
+   <properties>
+    <property name="dx" type="float" value="-0.25"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjFSQDMQpA0gXAXHxANKjYBSMZAAAarMawQ==
+  </data>
+  </layer>
+  <layer id="3" name="sea0A" width="32" height="16">
+   <properties>
+    <property name="dx" type="float" value="-0.5"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKRCRqBuGkA6VEwCgYSAACu1BAx
+  </data>
+  </layer>
+  <layer id="34" name="sea0B" width="32" height="16" offsetx="1024" offsety="0">
+   <properties>
+    <property name="dx" type="float" value="-0.5"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKRCRqBuGkA6VEwCgYSAACu1BAx
+  </data>
+  </layer>
+  <layer id="4" name="sea1A" width="32" height="16">
+   <properties>
+    <property name="dx" type="float" value="-0.75"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBBgAhBPHEB6FIxsAADSWBIR
+  </data>
+  </layer>
+  <layer id="33" name="sea1B" width="32" height="16" offsetx="1024" offsety="0">
+   <properties>
+    <property name="dx" type="float" value="-0.75"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBBgAhBPHEB6FIxsAADSWBIR
+  </data>
+  </layer>
+  <layer id="5" name="sea2A" width="32" height="16">
+   <properties>
+    <property name="dx" type="float" value="-1"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBLBfCBeMILpkQ4AKwQn4Q==
+  </data>
+  </layer>
+  <layer id="32" name="sea2B" width="32" height="16" offsetx="1024" offsety="0">
+   <properties>
+    <property name="dx" type="float" value="-1"/>
+   </properties>
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBLBfCBeMILpkQ4AKwQn4Q==
+  </data>
+  </layer>
+ </group>
+ <layer id="23" name="start" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzFlNENwjAMRG8FEEo/2o8AC7AZdAG+aSkDEDEstrAVq/Q7d9JTlKjWOW50VwA3YQRHd5Kv60X2/wgP4SksBP/din1j/yR0QhHOwoXg/7b12Ngb5q10RP8enNmrdO4ZnLur9O6s2asG64Hln8j+ZeWvWTijZqHuJ9R89P0Svp1CjWfpvFG/lbGePQf8Z2ELTtZDxu8tDNZPtnPPhoT6VnxmOdQWI4XziOdsj/rPdf0CnQEgXg==
+  </data>
+ </layer>
+ <group id="12" name="level1">
+  <layer id="15" name="flat0" width="32" height="16">
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAoGBnQAcTcQ9xChBoS7sKhFNgPE7oSq60RS24HGBwHBAcazgHglEK+A0jOBWAEqDqLFkdTA6Bio+EqoGgWovhVQ9ko0MxSw8GH2AAADZhkX
+  </data>
+  </layer>
+  <layer id="21" name="rock" width="32" height="16">
+   <data encoding="base64" compression="zlib">
+   eJztzksKgCAQBmB3vVauepytA2W4LztA6S37hQkGEWoTtZgfPtBhnFEpiUQikfw9C6wf7t/heGn2BIZYVq+hgQI0KaFi72ZikzkmqV19fIe+0cMAIzgSz92Dt0/EWRu04Ons2N2znVFgfwmZft6bzs3VTuGYIE0=
+  </data>
+  </layer>
+  <layer id="17" name="flat1" width="32" height="16">
+   <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAoGFnQAcTcUdwJxD1SsC4p70NR2QdV141CDTS2ymSC24ADjGCheCaVnQdkgeiYaWxyIV0DZMUjqYeLo6tDVItsBowE2ex5/
+  </data>
+  </layer>
+  <layer id="29" name="tree" width="32" height="16">
+   <data encoding="base64" compression="zlib">
+   eJztzT0KAjEQhuF0/lVWu3ortbVw9wKrF7A2Gg8Q8QB6S99ABsIQBAsNQgYeMgyZ+YypVavWv9QKa2wK5e/QoS+UP2CPQ6H8Y6FcqeuP8064wMLh/sUcm+RMMcMIc2WMSbJ3jpy6Y9VM/sncZG6LBZbYwith1r7Z/US4dUODR+x97CUreKrXx17+N5kdfTc3ewGCjyaB
+  </data>
+  </layer>
+ </group>
+ <objectgroup id="24" name="Object Layer 1">
+  <object id="1" name="playerStart" x="128" y="128">
+   <point/>
+  </object>
+ </objectgroup>
+</map>
