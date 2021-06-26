@@ -1,8 +1,6 @@
 local Tiled = require "Tiled"
-local bump = require "bump"
+local Physics = require "Physics"
 local Units = {}
-
-local Unit
 
 local nextunitid
 local units
@@ -11,11 +9,8 @@ local newunitqueue
 local removedunits
 local scene
 local unitprefabs
-local world
 
 function Units.init(scene0)
-    Unit = Unit or require "Unit"
-    world = bump.newWorld()
     nextunitid = 1
     units = {}
     thinkingunits = {}
@@ -30,7 +25,6 @@ function Units.setNextId(id)
 end
 
 function Units.clear()
-    world = nil
     units = nil
     thinkingunits = nil
     newunitqueue = nil
@@ -74,14 +68,14 @@ local function activateUnit(unit)
             if shape then
                 local w = shape.width or 1
                 local h = shape.height or 1
-                local ox = shape.x - tile.originx
-                local oy = shape.y - tile.originy
-                world:add(id, x+ox, y+oy, w, h)
+                local ox = shape.x
+                local oy = shape.y
+                Physics.addBody(id, x+ox, y+oy, w, h)
             end
         else
             local w = unit.width or 1
             local h = unit.height or 1
-            world:add(id, x, y, w, h)
+            Physics.addBody(id, x, y, w, h)
         end
     end
 
@@ -195,6 +189,9 @@ end
 function Units.deleteRemoved()
     for id, unit in pairs(removedunits) do
         scene:remove(id)
+        if Physics.isBody(id) then
+            Physics.removeBody(id)
+        end
         units[id] = nil
         thinkingunits[id] = nil
         removedunits[id] = nil
