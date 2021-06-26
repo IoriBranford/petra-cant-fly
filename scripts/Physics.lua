@@ -28,8 +28,10 @@ function Physics.setBody(id, x, y, w, h)
     world:update(id, x or x0, y or y0, w or w0, h or h0)
 end
 
-function Physics.moveBody(id, newx, newy, filter)
-    return world:move(id, newx, newy, filter)
+function Physics.moveBody(id, velx, vely, filter)
+    local x, y = world:getRect(id)
+    local newx, newy, cols, len = world:move(id, x+velx, y+vely, filter)
+    return newx - x, newy - y, cols, len
 end
 
 function Physics.removeBody(id)
