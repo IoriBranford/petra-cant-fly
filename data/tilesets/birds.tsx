@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.7.0" name="birds" tilewidth="32" tileheight="32" tilecount="45" columns="3">
+<tileset version="1.5" tiledversion="1.7.0" name="birds" tilewidth="32" tileheight="32" tilecount="45" columns="3" objectalignment="topleft">
+ <tileoffset x="16" y="16"/>
  <image source="birds.png" width="96" height="480"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">
