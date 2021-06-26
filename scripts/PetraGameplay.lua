@@ -7,11 +7,16 @@ local PetraGameplay = {}
 
 local scene
 local background
+local foreground
 local canvas
+local petravelx, petravely
 
 function PetraGameplay.loadphase()
     scene = Scene.new()
     background = {}
+    foreground = {}
+    petravelx = 0
+    petravely = 0
     PetraGameplay.loadMap("data/tropical_island.lua")
 
     canvas = love.graphics.newCanvas(Config.basewindowwidth, Config.basewindowheight)
@@ -21,6 +26,7 @@ end
 function PetraGameplay.quitphase()
     scene = nil
     background = nil
+    foreground = nil
     canvas = nil
 end
 
@@ -36,11 +42,9 @@ function PetraGameplay.loadMap(stagefile)
     local stagewidth = stagecols * cellwidth
     local stageheight = stagerows * cellheight
 
-    local layers = map.layers
-    local bg = layers.bg
-    if bg then
-        for i = 1, #bg do
-            local layer = bg[i]
+    local function addLayersToScene(layers, sceneobjects)
+        for i = 1, #layers do
+            local layer = layers[i]
             local layerid = 'l' .. layer.id
             local layertype = layer.type
             local x = layer.x
@@ -51,10 +55,19 @@ function PetraGameplay.loadMap(stagefile)
                 if tilebatch then
                     local sceneobject = scene:addChunk(layerid, layer, stagewidth, stageheight, x, y, z)
                     sceneobject.dx = layer.dx
-                    background[#background+1] = sceneobject
+                    if sceneobjects then
+                        sceneobjects[#sceneobjects+1] = sceneobject
+                    end
                 end
             end
         end
+    end
+
+    local layers = map.layers
+    addLayersToScene(layers, foreground)
+    local bg = layers.bg
+    if bg then
+        addLayersToScene(bg, background)
     end
 
     local prefabs = layers.prefabs
@@ -69,14 +82,51 @@ function PetraGameplay.loadMap(stagefile)
 end
 
 function PetraGameplay.fixedupdate()
+    if petravelx ~= 0 then
+        if petravely < 1 then
+            petravely = petravely + 1/32
+        end
+    end
+    local canvash = canvas:getHeight()
     for i = 1, #background do
-        local bg = background[i]
-        local x = bg.x + bg.dx
-        local w = bg.w
+        local sceneobject = background[i]
+        local x = sceneobject.x - sceneobject.dx*petravelx
+        local y = sceneobject.y - petravely
+        local w = sceneobject.w
+        local h = sceneobject.h
+        local miny = canvash - h
         if x <= -w then
             x = x + 2*w
         end
-        bg.x = x
+        if y > 0 then
+            y = 0
+        elseif y < miny then
+            y = miny
+        end
+        sceneobject.x = x
+        sceneobject.y = y
+    end
+    for i = 1, #foreground do
+        local sceneobject = foreground[i]
+        local x = sceneobject.x - petravelx
+        local y = sceneobject.y - petravely
+        local w = sceneobject.w
+        local h = sceneobject.h
+        local miny = canvash - h
+        if y > 0 then
+            y = 0
+        elseif y < miny then
+            y = miny
+        end
+        sceneobject.x = x
+        sceneobject.y = y
+    end
+end
+
+function PetraGameplay.mousepressed()
+    if petravelx == 0 then
+        petravelx = 4
+        petravely = -1
     end
 end
 
@@ -87,6 +137,7 @@ function PetraGameplay.draw()
     local chh = canvas:getHeight() / 2
 
     love.graphics.setCanvas(canvas)
+    love.graphics.clear()
     scene:draw()
     love.graphics.setCanvas()
 

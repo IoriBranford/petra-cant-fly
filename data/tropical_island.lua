@@ -280,7 +280,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = -0.25
+            ["dx"] = 0.25
           },
           encoding = "base64",
           compression = "zlib",
@@ -301,7 +301,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = -0.25
+            ["dx"] = 0.25
           },
           encoding = "base64",
           compression = "zlib",
@@ -322,7 +322,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = -0.5
+            ["dx"] = 0.5
           },
           encoding = "base64",
           compression = "zlib",
@@ -343,7 +343,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = -0.5
+            ["dx"] = 0.5
           },
           encoding = "base64",
           compression = "zlib",
@@ -364,7 +364,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = -0.75
+            ["dx"] = 0.75
           },
           encoding = "base64",
           compression = "zlib",
@@ -385,7 +385,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = -0.75
+            ["dx"] = 0.75
           },
           encoding = "base64",
           compression = "zlib",
@@ -406,7 +406,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = -1
+            ["dx"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -427,7 +427,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = -1
+            ["dx"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -476,7 +476,7 @@ return {
           name = "flat0",
           visible = true,
           opacity = 1,
-          offsetx = 0,
+          offsetx = 1024,
           offsety = 0,
           parallaxx = 1,
           parallaxy = 1,
@@ -495,7 +495,7 @@ return {
           name = "rock",
           visible = true,
           opacity = 1,
-          offsetx = 0,
+          offsetx = 1024,
           offsety = 0,
           parallaxx = 1,
           parallaxy = 1,
@@ -514,7 +514,7 @@ return {
           name = "flat1",
           visible = true,
           opacity = 1,
-          offsetx = 0,
+          offsetx = 1024,
           offsety = 0,
           parallaxx = 1,
           parallaxy = 1,
@@ -533,7 +533,7 @@ return {
           name = "tree",
           visible = true,
           opacity = 1,
-          offsetx = 0,
+          offsetx = 1024,
           offsety = 0,
           parallaxx = 1,
           parallaxy = 1,
