@@ -241,10 +241,10 @@ return {
       image = "tilesets/birds.png",
       imagewidth = 96,
       imageheight = 480,
-      objectalignment = "unspecified",
+      objectalignment = "topleft",
       tileoffset = {
-        x = 0,
-        y = 0
+        x = 16,
+        y = 16
       },
       grid = {
         orientation = "orthogonal",
@@ -288,15 +288,15 @@ return {
           animation = {
             {
               tileid = 0,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 1,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 2,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -394,15 +394,15 @@ return {
           animation = {
             {
               tileid = 3,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 4,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 5,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -498,15 +498,15 @@ return {
           animation = {
             {
               tileid = 6,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 7,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 8,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -602,15 +602,15 @@ return {
           animation = {
             {
               tileid = 9,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 10,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 11,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -706,15 +706,15 @@ return {
           animation = {
             {
               tileid = 12,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 13,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 14,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -811,15 +811,15 @@ return {
           animation = {
             {
               tileid = 15,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 16,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 17,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -915,15 +915,15 @@ return {
           animation = {
             {
               tileid = 18,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 19,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 20,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1019,15 +1019,15 @@ return {
           animation = {
             {
               tileid = 21,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 22,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 23,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1123,15 +1123,15 @@ return {
           animation = {
             {
               tileid = 24,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 25,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 26,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1227,15 +1227,15 @@ return {
           animation = {
             {
               tileid = 27,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 28,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 29,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1331,15 +1331,15 @@ return {
           animation = {
             {
               tileid = 30,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 31,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 32,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1435,15 +1435,15 @@ return {
           animation = {
             {
               tileid = 33,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 34,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 35,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1539,15 +1539,15 @@ return {
           animation = {
             {
               tileid = 36,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 37,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 38,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1643,15 +1643,15 @@ return {
           animation = {
             {
               tileid = 39,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 40,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 41,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1747,15 +1747,15 @@ return {
           animation = {
             {
               tileid = 42,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 43,
-              duration = 100
+              duration = 150
             },
             {
               tileid = 44,
-              duration = 100
+              duration = 150
             }
           }
         },
@@ -1850,7 +1850,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 0
+            ["parallaxscale"] = 0
           },
           encoding = "base64",
           compression = "zlib",
@@ -1871,7 +1871,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 0.25
+            ["parallaxscale"] = 0.25
           },
           encoding = "base64",
           compression = "zlib",
@@ -1892,7 +1892,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 0.25
+            ["parallaxscale"] = 0.25
           },
           encoding = "base64",
           compression = "zlib",
@@ -1913,7 +1913,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 0.5
+            ["parallaxscale"] = 0.5
           },
           encoding = "base64",
           compression = "zlib",
@@ -1934,7 +1934,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 0.5
+            ["parallaxscale"] = 0.5
           },
           encoding = "base64",
           compression = "zlib",
@@ -1955,7 +1955,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 0.75
+            ["parallaxscale"] = 0.75
           },
           encoding = "base64",
           compression = "zlib",
@@ -1976,7 +1976,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 0.75
+            ["parallaxscale"] = 0.75
           },
           encoding = "base64",
           compression = "zlib",
@@ -1997,7 +1997,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 1
+            ["parallaxscale"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2018,7 +2018,7 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["dx"] = 1
+            ["parallaxscale"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2188,7 +2188,15 @@ return {
           rotation = 0,
           gid = 181,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 3,
@@ -2202,7 +2210,15 @@ return {
           rotation = 0,
           gid = 184,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 4,
@@ -2216,7 +2232,15 @@ return {
           rotation = 0,
           gid = 187,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 5,
@@ -2230,7 +2254,15 @@ return {
           rotation = 0,
           gid = 190,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 6,
@@ -2244,7 +2276,15 @@ return {
           rotation = 0,
           gid = 193,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 7,
@@ -2258,7 +2298,15 @@ return {
           rotation = 0,
           gid = 196,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 8,
@@ -2272,7 +2320,15 @@ return {
           rotation = 0,
           gid = 199,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 9,
@@ -2286,7 +2342,15 @@ return {
           rotation = 0,
           gid = 202,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 10,
@@ -2300,7 +2364,15 @@ return {
           rotation = 0,
           gid = 205,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 11,
@@ -2314,7 +2386,15 @@ return {
           rotation = 0,
           gid = 208,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 12,
@@ -2328,7 +2408,15 @@ return {
           rotation = 0,
           gid = 211,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 13,
@@ -2342,7 +2430,15 @@ return {
           rotation = 0,
           gid = 214,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 15,
@@ -2356,7 +2452,15 @@ return {
           rotation = 0,
           gid = 217,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 16,
@@ -2370,7 +2474,15 @@ return {
           rotation = 0,
           gid = 220,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         },
         {
           id = 14,
@@ -2384,7 +2496,15 @@ return {
           rotation = 0,
           gid = 223,
           visible = true,
-          properties = {}
+          properties = {
+            ["body"] = true,
+            ["bodyshape"] = 1,
+            ["module"] = "Bird",
+            ["start"] = "start",
+            ["think"] = "think",
+            ["velx"] = -2,
+            ["vely"] = 0
+          }
         }
       }
     }

@@ -3,6 +3,7 @@ local Units = require "Units"
 local Scene = require "Scene"
 local Audio = require "Audio"
 local Config = require "Config"
+local Physics = require "Physics"
 local PetraGameplay = {}
 
 local scene
@@ -10,11 +11,19 @@ local background
 local foreground
 local canvas
 local petravelx, petravely
+local birdprefabs
+local birdinterval
+local birdtimer
 
 function PetraGameplay.loadphase()
     scene = Scene.new()
+    Physics.init()
+    Units.init(scene)
     background = {}
     foreground = {}
+    birdprefabs = {}
+    birdinterval = 120
+    birdtimer = birdinterval
     petravelx = 0
     petravely = 0
     PetraGameplay.loadMap("data/tropical_island.lua")
@@ -25,6 +34,9 @@ end
 
 function PetraGameplay.quitphase()
     scene = nil
+    birdprefabs = nil
+    Physics.clear()
+    Units.clear()
     background = nil
     foreground = nil
     canvas = nil
@@ -54,7 +66,7 @@ function PetraGameplay.loadMap(stagefile)
                 local tilebatch = layer.tilebatch
                 if tilebatch then
                     local sceneobject = scene:addChunk(layerid, layer, stagewidth, stageheight, x, y, z)
-                    sceneobject.dx = layer.dx
+                    sceneobject.parallaxscale = layer.parallaxscale
                     if sceneobjects then
                         sceneobjects[#sceneobjects+1] = sceneobject
                     end
@@ -65,15 +77,9 @@ function PetraGameplay.loadMap(stagefile)
 
     local layers = map.layers
     addLayersToScene(layers, foreground)
-    local bg = layers.bg
-    if bg then
-        addLayersToScene(bg, background)
-    end
-
-    local prefabs = layers.prefabs
-    if prefabs then
-        Units.addPrefabs(prefabs)
-    end
+    addLayersToScene(layers.bg, background)
+    birdprefabs = layers.birds
+    Units.addPrefabs(birdprefabs)
 
     local music = map.music
     if music then
@@ -81,16 +87,30 @@ function PetraGameplay.loadMap(stagefile)
     end
 end
 
-function PetraGameplay.fixedupdate()
+local function fixedupdate_title()
+end
+
+local function fixedupdate_play()
     if petravelx ~= 0 then
         if petravely < 1 then
             petravely = petravely + 1/32
         end
     end
+    local canvasw = canvas:getWidth()
     local canvash = canvas:getHeight()
+    birdtimer = birdtimer - 1
+    if birdtimer <= 0 then
+        birdtimer = birdinterval
+        local birdprefab = birdprefabs[love.math.random(#birdprefabs)]
+        Units.add_position(birdprefab, canvasw, canvash/2)
+    end
+    Units.think()
+    Units.activateAdded()
+    Units.deleteRemoved()
     for i = 1, #background do
         local sceneobject = background[i]
-        local x = sceneobject.x - sceneobject.dx*petravelx
+        local parallaxscale = sceneobject.parallaxscale
+        local x = sceneobject.x - parallaxscale*petravelx
         local y = sceneobject.y - petravely
         local w = sceneobject.w
         local h = sceneobject.h
@@ -123,11 +143,27 @@ function PetraGameplay.fixedupdate()
     end
 end
 
+local function fixedupdate_gameover()
+end
+
+local function startPlay()
+    love.fixedupdate = fixedupdate_play
+    petravelx = 4
+    petravely = -1
+end
+
+PetraGameplay.fixedupdate = fixedupdate_title
+
 function PetraGameplay.mousepressed()
-    if petravelx == 0 then
-        petravelx = 4
-        petravely = -1
+    if love.fixedupdate == fixedupdate_title then
+        startPlay()
+    elseif love.fixedupdate == fixedupdate_gameover then
+        love.event.loadphase("PetraGameplay")
     end
+end
+
+function PetraGameplay.update(dsecs)
+    scene:updateAnimations(dsecs)
 end
 
 function PetraGameplay.draw()

@@ -8,7 +8,7 @@
  <group id="28" name="bg">
   <layer id="1" name="sky" width="32" height="16">
    <properties>
-    <property name="dx" type="float" value="0"/>
+    <property name="parallaxscale" type="float" value="0"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxzZ2BgcB/FA4bDBhinDjAuGWDcPMB40gDjhQOMR8EoGAUDBwDcAHdB
@@ -16,7 +16,7 @@
   </layer>
   <layer id="2" name="cloudsA" width="32" height="16">
    <properties>
-    <property name="dx" type="float" value="0.25"/>
+    <property name="parallaxscale" type="float" value="0.25"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjFSQDMQpA0gXAXHxANKjYBSMZAAAarMawQ==
@@ -24,7 +24,7 @@
   </layer>
   <layer id="35" name="cloudsB" width="32" height="16" offsetx="1024" offsety="0">
    <properties>
-    <property name="dx" type="float" value="0.25"/>
+    <property name="parallaxscale" type="float" value="0.25"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjFSQDMQpA0gXAXHxANKjYBSMZAAAarMawQ==
@@ -32,7 +32,7 @@
   </layer>
   <layer id="3" name="sea0A" width="32" height="16">
    <properties>
-    <property name="dx" type="float" value="0.5"/>
+    <property name="parallaxscale" type="float" value="0.5"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIKRCRqBuGkA6VEwCgYSAACu1BAx
@@ -40,7 +40,7 @@
   </layer>
   <layer id="34" name="sea0B" width="32" height="16" offsetx="1024" offsety="0">
    <properties>
-    <property name="dx" type="float" value="0.5"/>
+    <property name="parallaxscale" type="float" value="0.5"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIKRCRqBuGkA6VEwCgYSAACu1BAx
@@ -48,7 +48,7 @@
   </layer>
   <layer id="4" name="sea1A" width="32" height="16">
    <properties>
-    <property name="dx" type="float" value="0.75"/>
+    <property name="parallaxscale" type="float" value="0.75"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMBBgAhBPHEB6FIxsAADSWBIR
@@ -56,7 +56,7 @@
   </layer>
   <layer id="33" name="sea1B" width="32" height="16" offsetx="1024" offsety="0">
    <properties>
-    <property name="dx" type="float" value="0.75"/>
+    <property name="parallaxscale" type="float" value="0.75"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMBBgAhBPHEB6FIxsAADSWBIR
@@ -64,7 +64,7 @@
   </layer>
   <layer id="5" name="sea2A" width="32" height="16">
    <properties>
-    <property name="dx" type="float" value="1"/>
+    <property name="parallaxscale" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMBLBfCBeMILpkQ4AKwQn4Q==
@@ -72,7 +72,7 @@
   </layer>
   <layer id="32" name="sea2B" width="32" height="16" offsetx="1024" offsety="0">
    <properties>
-    <property name="dx" type="float" value="1"/>
+    <property name="parallaxscale" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMBLBfCBeMILpkQ4AKwQn4Q==
@@ -112,20 +112,170 @@
   </object>
  </objectgroup>
  <objectgroup id="37" name="birds">
-  <object id="2" name="bird_1_red" gid="181" x="1024" y="32" width="32" height="32"/>
-  <object id="3" name="bird_1_bluejay" gid="184" x="1024" y="64" width="32" height="32"/>
-  <object id="4" name="bird_1_white_crest" gid="187" x="1024" y="96" width="32" height="32"/>
-  <object id="5" name="bird_1_white" gid="190" x="1024" y="128" width="32" height="32"/>
-  <object id="6" name="bird_1_brown" gid="193" x="1024" y="160" width="32" height="32"/>
-  <object id="7" name="bird_2_blue" gid="196" x="1024" y="192" width="32" height="32"/>
-  <object id="8" name="bird_2_brown_1" gid="199" x="1024" y="224" width="32" height="32"/>
-  <object id="9" name="bird_2_brown_2" gid="202" x="1024" y="256" width="32" height="32"/>
-  <object id="10" name="bird_2_cardinal" gid="205" x="1024" y="288" width="32" height="32"/>
-  <object id="11" name="bird_2_eagle" gid="208" x="1024" y="320" width="32" height="32"/>
-  <object id="12" name="bird_2_red" gid="211" x="1024" y="352" width="32" height="32"/>
-  <object id="13" name="bird_2_black" gid="214" x="1024" y="384" width="32" height="32"/>
-  <object id="15" name="bird_2_white" gid="217" x="1024" y="416" width="32" height="32"/>
-  <object id="16" name="bird_3_robin" gid="220" x="1024" y="448" width="32" height="32"/>
-  <object id="14" name="bird_3_sparrow" gid="223" x="1024" y="480" width="32" height="32"/>
+  <object id="2" name="bird_1_red" gid="181" x="1024" y="32" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="3" name="bird_1_bluejay" gid="184" x="1024" y="64" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="4" name="bird_1_white_crest" gid="187" x="1024" y="96" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="5" name="bird_1_white" gid="190" x="1024" y="128" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="6" name="bird_1_brown" gid="193" x="1024" y="160" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="7" name="bird_2_blue" gid="196" x="1024" y="192" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="8" name="bird_2_brown_1" gid="199" x="1024" y="224" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="9" name="bird_2_brown_2" gid="202" x="1024" y="256" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="10" name="bird_2_cardinal" gid="205" x="1024" y="288" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="11" name="bird_2_eagle" gid="208" x="1024" y="320" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="12" name="bird_2_red" gid="211" x="1024" y="352" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="13" name="bird_2_black" gid="214" x="1024" y="384" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="15" name="bird_2_white" gid="217" x="1024" y="416" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="16" name="bird_3_robin" gid="220" x="1024" y="448" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="14" name="bird_3_sparrow" gid="223" x="1024" y="480" width="32" height="32">
+   <properties>
+    <property name="body" type="bool" value="true"/>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Bird"/>
+    <property name="start" value="start"/>
+    <property name="think" value="think"/>
+    <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
