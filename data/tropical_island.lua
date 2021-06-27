@@ -8,8 +8,8 @@ return {
   height = 16,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 38,
-  nextobjectid = 18,
+  nextlayerid = 39,
+  nextobjectid = 21,
   properties = {},
   tilesets = {
     {
@@ -243,8 +243,8 @@ return {
       imageheight = 480,
       objectalignment = "topleft",
       tileoffset = {
-        x = 16,
-        y = 16
+        x = -16,
+        y = -16
       },
       grid = {
         orientation = "orthogonal",
@@ -1834,8 +1834,8 @@ return {
       imageheight = 64,
       objectalignment = "topleft",
       tileoffset = {
-        x = 32,
-        y = 32
+        x = -16,
+        y = -32
       },
       grid = {
         orientation = "orthogonal",
@@ -1980,6 +1980,76 @@ return {
           }
         }
       }
+    },
+    {
+      name = "balloon",
+      firstgid = 230,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      columns = 2,
+      image = "tilesets/balloon.png",
+      imagewidth = 64,
+      imageheight = 32,
+      objectalignment = "topleft",
+      tileoffset = {
+        x = -16,
+        y = -32
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 2,
+      tiles = {
+        {
+          id = 0,
+          objectGroup = {
+            type = "objectgroup",
+            draworder = "index",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            parallaxx = 1,
+            parallaxy = 1,
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 8,
+                y = 8,
+                width = 16,
+                height = 16,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 1,
+          properties = {
+            ["tilename"] = "pop"
+          },
+          animation = {
+            {
+              tileid = 1,
+              duration = 50
+            }
+          }
+        }
+      }
     }
   },
   layers = {
@@ -2010,7 +2080,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 0
+            ["parallax_x"] = 0,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2031,7 +2102,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 0.25
+            ["parallax_x"] = 0.25,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2052,7 +2124,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 0.25
+            ["parallax_x"] = 0.25,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2073,7 +2146,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 0.5
+            ["parallax_x"] = 0.5,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2094,7 +2168,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 0.5
+            ["parallax_x"] = 0.5,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2115,7 +2190,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 0.75
+            ["parallax_x"] = 0.75,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2136,7 +2212,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 0.75
+            ["parallax_x"] = 0.75,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2157,7 +2234,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 1
+            ["parallax_x"] = 1,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2178,7 +2256,8 @@ return {
           parallaxx = 1,
           parallaxy = 1,
           properties = {
-            ["parallaxscale"] = 1
+            ["parallax_x"] = 1,
+            ["parallax_y"] = 1
           },
           encoding = "base64",
           compression = "zlib",
@@ -2292,6 +2371,75 @@ return {
           encoding = "base64",
           compression = "zlib",
           data = "eJztzT0KAjEQhuF0/lVWu3ortbVw9wKrF7A2Gg8Q8QB6S99ABsIQBAsNQgYeMgyZ+YypVavWv9QKa2wK5e/QoS+UP2CPQ6H8Y6FcqeuP8064wMLh/sUcm+RMMcMIc2WMSbJ3jpy6Y9VM/sncZG6LBZbYwith1r7Z/US4dUODR+x97CUreKrXx17+N5kdfTc3ewGCjyaB"
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 38,
+      name = "tools",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 18,
+          name = "balloon_expand",
+          type = "",
+          shape = "rectangle",
+          x = 176,
+          y = 112,
+          width = 4,
+          height = 4,
+          rotation = 0,
+          gid = 230,
+          visible = true,
+          properties = {
+            ["module"] = "Balloon",
+            ["think"] = "thinkExpand"
+          }
+        },
+        {
+          id = 19,
+          name = "balloon_pop",
+          type = "",
+          shape = "rectangle",
+          x = 240,
+          y = 112,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 231,
+          visible = true,
+          properties = {
+            ["module"] = "Balloon",
+            ["think"] = "thinkPop"
+          }
+        },
+        {
+          id = 20,
+          name = "balloon_float",
+          type = "",
+          shape = "rectangle",
+          x = 208,
+          y = 112,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 230,
+          visible = true,
+          properties = {
+            ["bodyshape"] = 1,
+            ["module"] = "Balloon",
+            ["think"] = "thinkFloat",
+            ["velx"] = 0,
+            ["vely"] = -2
+          }
         }
       }
     },
@@ -2643,8 +2791,8 @@ return {
           name = "petra",
           type = "",
           shape = "rectangle",
-          x = 64,
-          y = 32,
+          x = 112,
+          y = 96,
           width = 64,
           height = 64,
           rotation = 0,

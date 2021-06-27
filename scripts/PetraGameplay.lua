@@ -10,10 +10,12 @@ local scene
 local background
 local foreground
 local canvas
+local canvastransform
 local petra
 local birdprefabs
 local birdinterval
 local birdtimer
+local expandingballoon
 
 function PetraGameplay.loadphase()
     scene = Scene.new()
@@ -28,16 +30,38 @@ function PetraGameplay.loadphase()
 
     canvas = love.graphics.newCanvas(Config.basewindowwidth, Config.basewindowheight)
     canvas:setFilter("nearest", "nearest")
+
+    local ghw = love.graphics.getWidth() / 2
+    local ghh = love.graphics.getHeight() / 2
+    local chw = canvas:getWidth() / 2
+    local chh = canvas:getHeight() / 2
+
+    local scale
+    local portraitrotation = Config.isPortraitRotation()
+    if portraitrotation then
+        scale = math.min(math.floor(ghh / chw), math.floor(ghw / chh))
+    else
+        scale = math.min(math.floor(ghw / chw), math.floor(ghh / chh))
+    end
+    local rotation = math.rad(Config.rotation)
+    canvastransform = love.math.newTransform()
+    canvastransform:translate(math.floor(ghw), math.floor(ghh))
+    canvastransform:rotate(rotation)
+    canvastransform:scale(scale)
+    canvastransform:translate(-chw, -chh)
 end
 
 function PetraGameplay.quitphase()
-    scene = nil
-    birdprefabs = nil
     Physics.clear()
     Units.clear()
+    scene = nil
     background = nil
     foreground = nil
     canvas = nil
+    canvastransform = nil
+    petra = nil
+    birdprefabs = nil
+    expandingballoon = nil
 end
 
 function PetraGameplay.loadMap(stagefile)
@@ -79,6 +103,7 @@ function PetraGameplay.loadMap(stagefile)
     addLayersToScene(layers.bg, background)
     birdprefabs = layers.birds
     Units.addPrefabs(birdprefabs)
+    Units.addPrefabs(layers.tools)
     local startobjects = layers.startobjects
     petra = Units.add(startobjects.petra, "petra")
     Units.activateAdded()
@@ -152,11 +177,39 @@ end
 
 PetraGameplay.fixedupdate = fixedupdate_title
 
-function PetraGameplay.mousepressed()
+function PetraGameplay.mousepressed(x, y, button, istouch, presses)
     if love.fixedupdate == fixedupdate_title then
         startPlay()
     elseif love.fixedupdate == fixedupdate_gameover then
         love.event.loadphase("PetraGameplay")
+    elseif not expandingballoon then
+        x, y = canvastransform:inverseTransformPoint(x, y)
+        x = math.max(0, math.min(x, canvas:getWidth()))
+        y = canvas:getHeight()
+        expandingballoon = Units.add_position("balloon_expand", x, y)
+    end
+end
+
+function PetraGameplay.mousemoved(x, y, dx, dy, istouch)
+    if expandingballoon then
+        x, y = canvastransform:inverseTransformPoint(x, y)
+        x = math.max(0, math.min(x, canvas:getWidth()))
+        expandingballoon.x = x
+        if expandingballoon.sprite then
+            expandingballoon.sprite.x = x
+        end
+    end
+end
+
+function PetraGameplay:mousereleased(x, y, button, istouch, presses)
+    if expandingballoon then
+        local balloon = Units.add_position("balloon_float", expandingballoon.x, expandingballoon.y)
+        balloon.scalex = expandingballoon.scalex
+        balloon.scaley = expandingballoon.scaley
+        balloon.velx = -petra.velx
+        balloon.vely = balloon.vely * balloon.scaley
+        Units.remove(expandingballoon)
+        expandingballoon = nil
     end
 end
 
@@ -165,30 +218,14 @@ function PetraGameplay.update(dsecs)
 end
 
 function PetraGameplay.draw()
-    local ghw = love.graphics.getWidth() / 2
-    local ghh = love.graphics.getHeight() / 2
-    local chw = canvas:getWidth() / 2
-    local chh = canvas:getHeight() / 2
-
     love.graphics.setCanvas(canvas)
     love.graphics.clear()
     scene:draw()
     -- Physics.draw()
     love.graphics.setCanvas()
 
-    local scale
-    local portraitrotation = Config.isPortraitRotation()
-    if portraitrotation then
-        scale = math.min(math.floor(ghh / chw), math.floor(ghw / chh))
-    else
-        scale = math.min(math.floor(ghw / chw), math.floor(ghh / chh))
-    end
-    local rotation = math.rad(Config.rotation)
     love.graphics.push()
-    love.graphics.translate(math.floor(ghw), math.floor(ghh))
-    love.graphics.rotate(rotation)
-    love.graphics.scale(scale)
-    love.graphics.translate(-chw, -chh)
+    love.graphics.applyTransform(canvastransform)
     love.graphics.draw(canvas, 0, 0, 0, 1, 1)
     -- Gui.draw()
     love.graphics.pop()

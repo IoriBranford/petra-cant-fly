@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="38" nextobjectid="18">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="39" nextobjectid="21">
  <editorsettings>
   <export target="tropical_island.lua" format="lua"/>
  </editorsettings>
  <tileset firstgid="1" source="tilesets/tropical_island.tsx"/>
  <tileset firstgid="181" source="tilesets/birds.tsx"/>
  <tileset firstgid="226" source="tilesets/petra.tsx"/>
+ <tileset firstgid="230" source="tilesets/balloon.tsx"/>
  <group id="28" name="bg">
   <layer id="1" name="sky" width="32" height="16">
    <properties>
-    <property name="parallaxscale" type="float" value="0"/>
+    <property name="parallax_x" type="float" value="0"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxzZ2BgcB/FA4bDBhinDjAuGWDcPMB40gDjhQOMR8EoGAUDBwDcAHdB
@@ -17,7 +19,8 @@
   </layer>
   <layer id="2" name="cloudsA" width="32" height="16">
    <properties>
-    <property name="parallaxscale" type="float" value="0.25"/>
+    <property name="parallax_x" type="float" value="0.25"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjFSQDMQpA0gXAXHxANKjYBSMZAAAarMawQ==
@@ -25,7 +28,8 @@
   </layer>
   <layer id="35" name="cloudsB" width="32" height="16" offsetx="1024" offsety="0">
    <properties>
-    <property name="parallaxscale" type="float" value="0.25"/>
+    <property name="parallax_x" type="float" value="0.25"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjFSQDMQpA0gXAXHxANKjYBSMZAAAarMawQ==
@@ -33,7 +37,8 @@
   </layer>
   <layer id="3" name="sea0A" width="32" height="16">
    <properties>
-    <property name="parallaxscale" type="float" value="0.5"/>
+    <property name="parallax_x" type="float" value="0.5"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIKRCRqBuGkA6VEwCgYSAACu1BAx
@@ -41,7 +46,8 @@
   </layer>
   <layer id="34" name="sea0B" width="32" height="16" offsetx="1024" offsety="0">
    <properties>
-    <property name="parallaxscale" type="float" value="0.5"/>
+    <property name="parallax_x" type="float" value="0.5"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIKRCRqBuGkA6VEwCgYSAACu1BAx
@@ -49,7 +55,8 @@
   </layer>
   <layer id="4" name="sea1A" width="32" height="16">
    <properties>
-    <property name="parallaxscale" type="float" value="0.75"/>
+    <property name="parallax_x" type="float" value="0.75"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMBBgAhBPHEB6FIxsAADSWBIR
@@ -57,7 +64,8 @@
   </layer>
   <layer id="33" name="sea1B" width="32" height="16" offsetx="1024" offsety="0">
    <properties>
-    <property name="parallaxscale" type="float" value="0.75"/>
+    <property name="parallax_x" type="float" value="0.75"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMBBgAhBPHEB6FIxsAADSWBIR
@@ -65,7 +73,8 @@
   </layer>
   <layer id="5" name="sea2A" width="32" height="16">
    <properties>
-    <property name="parallaxscale" type="float" value="1"/>
+    <property name="parallax_x" type="float" value="1"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMBLBfCBeMILpkQ4AKwQn4Q==
@@ -73,7 +82,8 @@
   </layer>
   <layer id="32" name="sea2B" width="32" height="16" offsetx="1024" offsety="0">
    <properties>
-    <property name="parallaxscale" type="float" value="1"/>
+    <property name="parallax_x" type="float" value="1"/>
+    <property name="parallax_y" type="float" value="1"/>
    </properties>
    <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMBLBfCBeMILpkQ4AKwQn4Q==
@@ -107,6 +117,29 @@
   </data>
   </layer>
  </group>
+ <objectgroup id="38" name="tools">
+  <object id="18" name="balloon_expand" gid="230" x="176" y="112" width="4" height="4">
+   <properties>
+    <property name="module" value="Balloon"/>
+    <property name="think" value="thinkExpand"/>
+   </properties>
+  </object>
+  <object id="19" name="balloon_pop" gid="231" x="240" y="112" width="32" height="32">
+   <properties>
+    <property name="module" value="Balloon"/>
+    <property name="think" value="thinkPop"/>
+   </properties>
+  </object>
+  <object id="20" name="balloon_float" gid="230" x="208" y="112" width="32" height="32">
+   <properties>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="module" value="Balloon"/>
+    <property name="think" value="thinkFloat"/>
+    <property name="velx" type="float" value="0"/>
+    <property name="vely" type="float" value="-2"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="37" name="birds">
   <object id="2" name="bird_1_red" gid="181" x="976" y="-16" width="32" height="32">
    <properties>
@@ -260,7 +293,7 @@
   </object>
  </objectgroup>
  <objectgroup id="24" name="startobjects">
-  <object id="17" name="petra" gid="226" x="64" y="32" width="64" height="64">
+  <object id="17" name="petra" gid="226" x="112" y="96" width="64" height="64">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="gravity" type="float" value="0.03125"/>
