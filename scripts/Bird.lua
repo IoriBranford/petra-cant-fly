@@ -1,4 +1,4 @@
-local Physics = require "Physics"
+local Unit = require "Unit"
 local Bird = {}
 
 function Bird:start()
@@ -13,11 +13,7 @@ function Bird:collisionFilter(other)
 end
 
 function Bird:think()
-    local id = self.id
-    local velx, vely = self.velx, self.vely
-    local deltax, deltay, collisions, len = Physics.moveBody(id, velx, vely, Bird.collisionFilter)
-    local sprite = self.sprite
-    sprite.x, sprite.y = sprite.x + deltax, sprite.y + deltay
+    Unit.move(self, self.velx, self.vely, Bird.collisionFilter)
 end
 
 return Bird
