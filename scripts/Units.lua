@@ -40,6 +40,7 @@ local function activateUnit(unit)
     local start
     if module then
         module = require(module)
+        setmetatable(unit, module)
         local think = unit.think and module[unit.think]
         if type(think) == "function" then
             unit.think = think
@@ -57,12 +58,8 @@ local function activateUnit(unit)
     end
     if tile then
         unit.sprite = scene:addAnimatedTile(id, tile, x, y, z, unit.rotation, unit.scalex, unit.scaley)
-    end
-
-    local body = unit.body
-    if body then
-        if tile then
-            local bodyshape = unit.bodyshape
+        local bodyshape = unit.bodyshape
+        if bodyshape then
             local shapes = tile.shapes
             local shape = shapes and shapes[bodyshape]
             if shape then
@@ -72,7 +69,10 @@ local function activateUnit(unit)
                 local oy = shape.y
                 Physics.addBody(id, x+ox, y+oy, w, h)
             end
-        else
+        end
+    else
+        local body = unit.body
+        if body then
             local w = unit.width or 1
             local h = unit.height or 1
             Physics.addBody(id, x, y, w, h)
