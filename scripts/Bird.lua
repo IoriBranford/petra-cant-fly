@@ -1,4 +1,5 @@
 local Unit = require "Unit"
+local Units = require "Units"
 local Bird = {}
 
 function Bird:start()
@@ -14,6 +15,9 @@ end
 
 function Bird:think()
     Unit.move(self, self.velx, self.vely, Bird.collisionFilter)
+    if self.x < 0 then
+        Units.remove(self)
+    end
 end
 
 return Bird
