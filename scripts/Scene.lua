@@ -23,7 +23,7 @@ function SceneObject.__lt(a, b)
     end
 end
 
-local function setObjectTile(sceneobject, tile, animated)
+local function setTile(sceneobject, tile, animated)
     sceneobject.drawable = tile.image
     sceneobject.quad = tile.quad
     sceneobject.width = tile.width
@@ -37,7 +37,7 @@ local function setObjectTile(sceneobject, tile, animated)
         sceneobject.animationtime = 0
     end
 end
-SceneObject.setTile = setObjectTile
+SceneObject.setTile = setTile
 
 local Scene = {}
 Scene.__index = Scene
@@ -98,13 +98,13 @@ end
 
 function Scene:addTile(id, tile, x, y, z, r, sx, sy, ox, oy, kx, ky)
     local sceneobject = self:add(id, drawQuad, tile.image, nil, nil, nil, x, y, z, r, sx, sy, nil, nil, kx, ky)
-    setObjectTile(sceneobject, tile)
+    setTile(sceneobject, tile)
     return sceneobject
 end
 
 function Scene:addAnimatedTile(id, tile, x, y, z, r, sx, sy, ox, oy, kx, ky)
     local sceneobject = self:add(id, drawQuad, tile.image, nil, nil, nil, x, y, z, r, sx, sy, nil, nil, kx, ky)
-    setObjectTile(sceneobject, tile, true)
+    setTile(sceneobject, tile, true)
     return sceneobject
 end
 
