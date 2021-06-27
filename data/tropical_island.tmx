@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="38" nextobjectid="17">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="38" nextobjectid="18">
  <editorsettings>
   <export target="tropical_island.lua" format="lua"/>
  </editorsettings>
  <tileset firstgid="1" source="tilesets/tropical_island.tsx"/>
  <tileset firstgid="181" source="tilesets/birds.tsx"/>
+ <tileset firstgid="226" source="tilesets/petra.tsx"/>
  <group id="28" name="bg">
   <layer id="1" name="sky" width="32" height="16">
    <properties>
@@ -81,7 +82,7 @@
  </group>
  <layer id="23" name="start" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eJzFlNENwjAMRG8FEEo/2o8AC7AZdAG+aSkDEDEstrAVq/Q7d9JTlKjWOW50VwA3YQRHd5Kv60X2/wgP4SksBP/din1j/yR0QhHOwoXg/7b12Ngb5q10RP8enNmrdO4ZnLur9O6s2asG64Hln8j+ZeWvWTijZqHuJ9R89P0Svp1CjWfpvFG/lbGePQf8Z2ELTtZDxu8tDNZPtnPPhoT6VnxmOdQWI4XziOdsj/rPdf0CnQEgXg==
+   eJzFlEsOAiEQROsKmgmzmFmgXsCb6VzA9fw8gMTD2h27A0HXVCUvBAKppiF1A3AXJnD0IPm6nmT/tzALm7AT/A8Vx8b+QeiFJFyEK8H/ZeOpsTfMW+mJ/gM4vVdp3yM4d1fp3Vm9V41WA8s/kP1T5a9ZuCJnoc4X5Hz0+V7sXYoznqVrtX/D/4z17Onwm4UtOFsNEd+/MFo90dY9GwLyX/GexeJsMkKxXuI5OyC/uY4fPMAg6g==
   </data>
  </layer>
  <group id="12" name="level1">
@@ -106,15 +107,9 @@
   </data>
   </layer>
  </group>
- <objectgroup id="24" name="playerstart">
-  <object id="1" x="128" y="128">
-   <point/>
-  </object>
- </objectgroup>
  <objectgroup id="37" name="birds">
   <object id="2" name="bird_1_red" gid="181" x="1024" y="32" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -125,7 +120,6 @@
   </object>
   <object id="3" name="bird_1_bluejay" gid="184" x="1024" y="64" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -136,7 +130,6 @@
   </object>
   <object id="4" name="bird_1_white_crest" gid="187" x="1024" y="96" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -147,7 +140,6 @@
   </object>
   <object id="5" name="bird_1_white" gid="190" x="1024" y="128" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -158,7 +150,6 @@
   </object>
   <object id="6" name="bird_1_brown" gid="193" x="1024" y="160" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -169,7 +160,6 @@
   </object>
   <object id="7" name="bird_2_blue" gid="196" x="1024" y="192" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -180,7 +170,6 @@
   </object>
   <object id="8" name="bird_2_brown_1" gid="199" x="1024" y="224" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -191,7 +180,6 @@
   </object>
   <object id="9" name="bird_2_brown_2" gid="202" x="1024" y="256" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -202,7 +190,6 @@
   </object>
   <object id="10" name="bird_2_cardinal" gid="205" x="1024" y="288" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -213,7 +200,6 @@
   </object>
   <object id="11" name="bird_2_eagle" gid="208" x="1024" y="320" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -224,7 +210,6 @@
   </object>
   <object id="12" name="bird_2_red" gid="211" x="1024" y="352" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -235,7 +220,6 @@
   </object>
   <object id="13" name="bird_2_black" gid="214" x="1024" y="384" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -246,7 +230,6 @@
   </object>
   <object id="15" name="bird_2_white" gid="217" x="1024" y="416" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -257,7 +240,6 @@
   </object>
   <object id="16" name="bird_3_robin" gid="220" x="1024" y="448" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
@@ -268,12 +250,24 @@
   </object>
   <object id="14" name="bird_3_sparrow" gid="223" x="1024" y="480" width="32" height="32">
    <properties>
-    <property name="body" type="bool" value="true"/>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
     <property name="start" value="start"/>
     <property name="think" value="think"/>
     <property name="velx" type="float" value="-2"/>
+    <property name="vely" type="float" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="24" name="startobjects">
+  <object id="17" name="petra" gid="226" x="64" y="32" width="64" height="64">
+   <properties>
+    <property name="bodyshape" type="int" value="1"/>
+    <property name="gravity" type="float" value="0.03125"/>
+    <property name="module" value="Petra"/>
+    <property name="start" value="start"/>
+    <property name="think" value="thinkTitle"/>
+    <property name="velx" type="float" value="0"/>
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>

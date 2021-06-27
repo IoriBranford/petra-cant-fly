@@ -9,7 +9,7 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 38,
-  nextobjectid = 17,
+  nextobjectid = 18,
   properties = {},
   tilesets = {
     {
@@ -1820,6 +1820,166 @@ return {
           }
         }
       }
+    },
+    {
+      name = "petra",
+      firstgid = 226,
+      tilewidth = 64,
+      tileheight = 64,
+      spacing = 0,
+      margin = 0,
+      columns = 4,
+      image = "tilesets/petra.png",
+      imagewidth = 256,
+      imageheight = 64,
+      objectalignment = "topleft",
+      tileoffset = {
+        x = 32,
+        y = 32
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 64,
+        height = 64
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 4,
+      tiles = {
+        {
+          id = 0,
+          properties = {
+            ["tilename"] = "stand"
+          },
+          objectGroup = {
+            type = "objectgroup",
+            draworder = "topdown",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            parallaxx = 1,
+            parallaxy = 1,
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 16,
+                y = 24,
+                width = 32,
+                height = 16,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 1,
+          properties = {
+            ["tilename"] = "jump"
+          },
+          objectGroup = {
+            type = "objectgroup",
+            draworder = "topdown",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            parallaxx = 1,
+            parallaxy = 1,
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 16,
+                y = 24,
+                width = 32,
+                height = 16,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 2,
+          properties = {
+            ["tilename"] = "fly"
+          },
+          objectGroup = {
+            type = "objectgroup",
+            draworder = "index",
+            id = 2,
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            parallaxx = 1,
+            parallaxy = 1,
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 16,
+                y = 24,
+                width = 32,
+                height = 16,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 3,
+          properties = {
+            ["tilename"] = "down"
+          },
+          objectGroup = {
+            type = "objectgroup",
+            draworder = "topdown",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            parallaxx = 1,
+            parallaxy = 1,
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 16,
+                y = 24,
+                width = 32,
+                height = 16,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        }
+      }
     }
   },
   layers = {
@@ -2043,7 +2203,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJzFlNENwjAMRG8FEEo/2o8AC7AZdAG+aSkDEDEstrAVq/Q7d9JTlKjWOW50VwA3YQRHd5Kv60X2/wgP4SksBP/din1j/yR0QhHOwoXg/7b12Ngb5q10RP8enNmrdO4ZnLur9O6s2asG64Hln8j+ZeWvWTijZqHuJ9R89P0Svp1CjWfpvFG/lbGePQf8Z2ELTtZDxu8tDNZPtnPPhoT6VnxmOdQWI4XziOdsj/rPdf0CnQEgXg=="
+      data = "eJzFlEsOAiEQROsKmgmzmFmgXsCb6VzA9fw8gMTD2h27A0HXVCUvBAKppiF1A3AXJnD0IPm6nmT/tzALm7AT/A8Vx8b+QeiFJFyEK8H/ZeOpsTfMW+mJ/gM4vVdp3yM4d1fp3Vm9V41WA8s/kP1T5a9ZuCJnoc4X5Hz0+V7sXYoznqVrtX/D/4z17Onwm4UtOFsNEd+/MFo90dY9GwLyX/GexeJsMkKxXuI5OyC/uY4fPMAg6g=="
     },
     {
       type = "group",
@@ -2138,34 +2298,6 @@ return {
     {
       type = "objectgroup",
       draworder = "topdown",
-      id = 24,
-      name = "playerstart",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      properties = {},
-      objects = {
-        {
-          id = 1,
-          name = "",
-          type = "",
-          shape = "point",
-          x = 128,
-          y = 128,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
-      }
-    },
-    {
-      type = "objectgroup",
-      draworder = "topdown",
       id = 37,
       name = "birds",
       visible = true,
@@ -2189,7 +2321,6 @@ return {
           gid = 181,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2211,7 +2342,6 @@ return {
           gid = 184,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2233,7 +2363,6 @@ return {
           gid = 187,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2255,7 +2384,6 @@ return {
           gid = 190,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2277,7 +2405,6 @@ return {
           gid = 193,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2299,7 +2426,6 @@ return {
           gid = 196,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2321,7 +2447,6 @@ return {
           gid = 199,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2343,7 +2468,6 @@ return {
           gid = 202,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2365,7 +2489,6 @@ return {
           gid = 205,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2387,7 +2510,6 @@ return {
           gid = 208,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2409,7 +2531,6 @@ return {
           gid = 211,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2431,7 +2552,6 @@ return {
           gid = 214,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2453,7 +2573,6 @@ return {
           gid = 217,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2475,7 +2594,6 @@ return {
           gid = 220,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
@@ -2497,12 +2615,48 @@ return {
           gid = 223,
           visible = true,
           properties = {
-            ["body"] = true,
             ["bodyshape"] = 1,
             ["module"] = "Bird",
             ["start"] = "start",
             ["think"] = "think",
             ["velx"] = -2,
+            ["vely"] = 0
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 24,
+      name = "startobjects",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 17,
+          name = "petra",
+          type = "",
+          shape = "rectangle",
+          x = 64,
+          y = 32,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 226,
+          visible = true,
+          properties = {
+            ["bodyshape"] = 1,
+            ["gravity"] = 0.03125,
+            ["module"] = "Petra",
+            ["start"] = "start",
+            ["think"] = "thinkTitle",
+            ["velx"] = 0,
             ["vely"] = 0
           }
         }

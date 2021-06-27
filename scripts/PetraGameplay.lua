@@ -10,7 +10,7 @@ local scene
 local background
 local foreground
 local canvas
-local petravelx, petravely
+local petra
 local birdprefabs
 local birdinterval
 local birdtimer
@@ -24,8 +24,6 @@ function PetraGameplay.loadphase()
     birdprefabs = {}
     birdinterval = 120
     birdtimer = birdinterval
-    petravelx = 0
-    petravely = 0
     PetraGameplay.loadMap("data/tropical_island.lua")
 
     canvas = love.graphics.newCanvas(Config.basewindowwidth, Config.basewindowheight)
@@ -80,6 +78,9 @@ function PetraGameplay.loadMap(stagefile)
     addLayersToScene(layers.bg, background)
     birdprefabs = layers.birds
     Units.addPrefabs(birdprefabs)
+    local startobjects = layers.startobjects
+    petra = Units.add(startobjects.petra, "petra")
+    Units.activateAdded()
 
     local music = map.music
     if music then
@@ -91,11 +92,6 @@ local function fixedupdate_title()
 end
 
 local function fixedupdate_play()
-    if petravelx ~= 0 then
-        if petravely < 1 then
-            petravely = petravely + 1/32
-        end
-    end
     local canvasw = canvas:getWidth()
     local canvash = canvas:getHeight()
     birdtimer = birdtimer - 1
@@ -107,6 +103,7 @@ local function fixedupdate_play()
     Units.think()
     Units.activateAdded()
     Units.deleteRemoved()
+    local petravelx, petravely = petra.velx, petra.vely
     for i = 1, #background do
         local sceneobject = background[i]
         local parallaxscale = sceneobject.parallaxscale
@@ -148,8 +145,7 @@ end
 
 local function startPlay()
     love.fixedupdate = fixedupdate_play
-    petravelx = 4
-    petravely = -1
+    petra:startPlay(3)
 end
 
 PetraGameplay.fixedupdate = fixedupdate_title
@@ -175,6 +171,7 @@ function PetraGameplay.draw()
     love.graphics.setCanvas(canvas)
     love.graphics.clear()
     scene:draw()
+    -- Physics.draw()
     love.graphics.setCanvas()
 
     local scale
