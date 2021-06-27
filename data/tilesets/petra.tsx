@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.5" tiledversion="1.7.0" name="petra" tilewidth="64" tileheight="64" tilecount="4" columns="4" objectalignment="topleft">
- <tileoffset x="32" y="32"/>
+ <tileoffset x="-16" y="-32"/>
  <image source="petra.png" width="256" height="64"/>
  <tile id="0">
   <properties>
