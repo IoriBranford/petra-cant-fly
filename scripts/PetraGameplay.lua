@@ -64,7 +64,8 @@ function PetraGameplay.loadMap(stagefile)
                 local tilebatch = layer.tilebatch
                 if tilebatch then
                     local sceneobject = scene:addChunk(layerid, layer, stagewidth, stageheight, x, y, z)
-                    sceneobject.parallaxscale = layer.parallaxscale
+                    sceneobject.parallax_x = layer.parallax_x
+                    sceneobject.parallax_y = layer.parallax_y
                     if sceneobjects then
                         sceneobjects[#sceneobjects+1] = sceneobject
                     end
@@ -106,9 +107,10 @@ local function fixedupdate_play()
     local petravelx, petravely = petra.velx, petra.vely
     for i = 1, #background do
         local sceneobject = background[i]
-        local parallaxscale = sceneobject.parallaxscale
-        local x = sceneobject.x - parallaxscale*petravelx
-        local y = sceneobject.y - petravely
+        local parallax_x = sceneobject.parallax_x
+        local parallax_y = sceneobject.parallax_y
+        local x = sceneobject.x - parallax_x*petravelx
+        local y = sceneobject.y - parallax_y*petravely
         local w = sceneobject.w
         local h = sceneobject.h
         local miny = canvash - h

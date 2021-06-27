@@ -108,7 +108,7 @@
   </layer>
  </group>
  <objectgroup id="37" name="birds">
-  <object id="2" name="bird_1_red" gid="181" x="1024" y="32" width="32" height="32">
+  <object id="2" name="bird_1_red" gid="181" x="976" y="-16" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -118,7 +118,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="3" name="bird_1_bluejay" gid="184" x="1024" y="64" width="32" height="32">
+  <object id="3" name="bird_1_bluejay" gid="184" x="976" y="16" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -128,7 +128,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="4" name="bird_1_white_crest" gid="187" x="1024" y="96" width="32" height="32">
+  <object id="4" name="bird_1_white_crest" gid="187" x="976" y="48" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -138,7 +138,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="5" name="bird_1_white" gid="190" x="1024" y="128" width="32" height="32">
+  <object id="5" name="bird_1_white" gid="190" x="976" y="80" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -148,7 +148,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="6" name="bird_1_brown" gid="193" x="1024" y="160" width="32" height="32">
+  <object id="6" name="bird_1_brown" gid="193" x="976" y="112" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -158,7 +158,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="7" name="bird_2_blue" gid="196" x="1024" y="192" width="32" height="32">
+  <object id="7" name="bird_2_blue" gid="196" x="976" y="144" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -168,7 +168,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="8" name="bird_2_brown_1" gid="199" x="1024" y="224" width="32" height="32">
+  <object id="8" name="bird_2_brown_1" gid="199" x="976" y="176" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -178,7 +178,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="9" name="bird_2_brown_2" gid="202" x="1024" y="256" width="32" height="32">
+  <object id="9" name="bird_2_brown_2" gid="202" x="976" y="208" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -188,7 +188,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="10" name="bird_2_cardinal" gid="205" x="1024" y="288" width="32" height="32">
+  <object id="10" name="bird_2_cardinal" gid="205" x="976" y="240" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -198,7 +198,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="11" name="bird_2_eagle" gid="208" x="1024" y="320" width="32" height="32">
+  <object id="11" name="bird_2_eagle" gid="208" x="976" y="272" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -208,7 +208,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="12" name="bird_2_red" gid="211" x="1024" y="352" width="32" height="32">
+  <object id="12" name="bird_2_red" gid="211" x="976" y="304" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -218,7 +218,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="13" name="bird_2_black" gid="214" x="1024" y="384" width="32" height="32">
+  <object id="13" name="bird_2_black" gid="214" x="976" y="336" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -228,7 +228,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="15" name="bird_2_white" gid="217" x="1024" y="416" width="32" height="32">
+  <object id="15" name="bird_2_white" gid="217" x="976" y="368" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -238,7 +238,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="16" name="bird_3_robin" gid="220" x="1024" y="448" width="32" height="32">
+  <object id="16" name="bird_3_robin" gid="220" x="976" y="400" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
@@ -248,7 +248,7 @@
     <property name="vely" type="float" value="0"/>
    </properties>
   </object>
-  <object id="14" name="bird_3_sparrow" gid="223" x="1024" y="480" width="32" height="32">
+  <object id="14" name="bird_3_sparrow" gid="223" x="976" y="432" width="32" height="32">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="module" value="Bird"/>
