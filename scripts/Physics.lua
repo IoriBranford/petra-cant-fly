@@ -38,21 +38,10 @@ function Physics.removeBody(id)
     world:remove(id)
 end
 
-local function drawFixture(fixture)
-    local shape = fixture:getShape()
-    local typ = shape:getType()
-    if typ == "circle" then
-        local body = fixture:getBody()
-        local x, y = body:getWorldPoint(shape:getPoint())
-        love.graphics.circle("line", x, y, shape:getRadius())
-    elseif typ == "polygon" or typ == "chain" then
-        local body = fixture:getBody()
-        love.graphics.polygon("line", body:getWorldPoints(shape:getPoints()))
-    end
-    return true
-end
-
 function Physics.draw(viewx, viewy, vieww, viewh)
+    for i, rect in pairs(world.rects) do
+        love.graphics.rectangle("line", rect.x, rect.y, rect.w, rect.h)
+    end
 end
 
 return Physics
