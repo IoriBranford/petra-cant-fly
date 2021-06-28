@@ -114,6 +114,8 @@ function PetraGameplay.loadMap(stagefile)
     petra = Units.add(startobjects.petra, "petra")
     Units.activateAdded()
 
+    Physics.addBody("ceiling", 0, -1, stagewidth, 1)
+
     local music = map.music
     if music then
         Audio.playMusic(directory..music, 0)
