@@ -7,8 +7,9 @@ local Physics = require "Physics"
 local PetraGameplay = {}
 
 local scene
-local background
-local foreground
+local backgrounds
+local currentforegrounds
+local levelforegrounds
 local canvas
 local canvastransform
 local petra
@@ -21,8 +22,9 @@ function PetraGameplay.loadphase()
     scene = Scene.new()
     Physics.init()
     Units.init(scene)
-    background = {}
-    foreground = {}
+    backgrounds = {}
+    currentforegrounds = {}
+    levelforegrounds = {}
     birdprefabs = {}
     birdinterval = 120
     birdtimer = birdinterval
@@ -55,8 +57,9 @@ function PetraGameplay.quitphase()
     Physics.clear()
     Units.clear()
     scene = nil
-    background = nil
-    foreground = nil
+    backgrounds = nil
+    currentforegrounds = nil
+    levelforegrounds = nil
     canvas = nil
     canvastransform = nil
     petra = nil
@@ -88,6 +91,7 @@ function PetraGameplay.loadMap(stagefile)
                 local tilebatch = layer.tilebatch
                 if tilebatch then
                     local sceneobject = scene:addChunk(layerid, layer, stagewidth, stageheight, x, y, z)
+                    sceneobject.showonce = layer.showonce
                     sceneobject.parallax_x = layer.parallax_x
                     sceneobject.parallax_y = layer.parallax_y
                     if sceneobjects then
@@ -99,8 +103,10 @@ function PetraGameplay.loadMap(stagefile)
     end
 
     local layers = map.layers
-    addLayersToScene(layers, foreground)
-    addLayersToScene(layers.bg, background)
+    addLayersToScene(layers, currentforegrounds)
+    addLayersToScene(layers.level1, levelforegrounds)
+    currentforegrounds[#currentforegrounds+1] = table.remove(levelforegrounds, 1)
+    addLayersToScene(layers.bg, backgrounds)
     birdprefabs = layers.birds
     Units.addPrefabs(birdprefabs)
     Units.addPrefabs(layers.tools)
@@ -118,17 +124,18 @@ local function fixedupdate_title()
 end
 
 local function fixedupdate_play()
+    Units.think()
     local canvasw = canvas:getWidth()
     local canvash = canvas:getHeight()
     local petravelx, petravely = petra.velx, petra.vely/2
-    for i = 1, #background do
-        local sceneobject = background[i]
-        local parallax_x = sceneobject.parallax_x
-        local parallax_y = sceneobject.parallax_y
-        local x = sceneobject.x - parallax_x*petravelx
-        local y = sceneobject.y - parallax_y*petravely
-        local w = sceneobject.w
-        local h = sceneobject.h
+    for i = 1, #backgrounds do
+        local background = backgrounds[i]
+        local parallax_x = background.parallax_x
+        local parallax_y = background.parallax_y
+        local x = background.x - parallax_x*petravelx
+        local y = background.y - parallax_y*petravely
+        local w = background.w
+        local h = background.h
         local miny = canvash - h
         if x <= -w then
             x = x + 2*w
@@ -138,23 +145,35 @@ local function fixedupdate_play()
         elseif y < miny then
             y = miny
         end
-        sceneobject.x = x
-        sceneobject.y = y
+        background.x = x
+        background.y = y
     end
-    for i = 1, #foreground do
-        local sceneobject = foreground[i]
-        local x = sceneobject.x - petravelx
-        local y = sceneobject.y - petravely
-        local w = sceneobject.w
-        local h = sceneobject.h
+    for i = 1, #currentforegrounds do
+        local foreground = currentforegrounds[i]
+        local x = foreground.x - petravelx
+        local y = foreground.y - petravely
+        local w = foreground.w
+        local h = foreground.h
         local miny = canvash - h
         if y > 0 then
             y = 0
         elseif y < miny then
             y = miny
         end
-        sceneobject.x = x
-        sceneobject.y = y
+        foreground.x = x
+        foreground.y = y
+    end
+    local fg1, fg2 = currentforegrounds[1], currentforegrounds[2]
+    if fg1.x + fg1.w <= 0 then
+        if not fg1.showonce then
+            levelforegrounds[#levelforegrounds+1] = fg1
+        end
+        fg1 = fg2
+        fg2 = table.remove(levelforegrounds, love.math.random(#levelforegrounds))
+        fg2.x = fg1.x + fg1.w
+        fg2.y = fg1.y
+        currentforegrounds[1] = fg1
+        currentforegrounds[2] = fg2
     end
     birdtimer = birdtimer - 1
     if birdtimer <= 0 then
@@ -162,7 +181,6 @@ local function fixedupdate_play()
         local birdprefab = birdprefabs[love.math.random(#birdprefabs)]
         Units.add_position(birdprefab, canvasw, canvash/2)
     end
-    Units.think()
     Units.activateAdded()
     Units.deleteRemoved()
 end

@@ -91,6 +91,9 @@
   </layer>
  </group>
  <layer id="23" name="start" width="32" height="16">
+  <properties>
+   <property name="showonce" type="bool" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzFlEsOAiEQROsKmgmzmFmgXsCb6VzA9fw8gMTD2h27A0HXVCUvBAKppiF1A3AXJnD0IPm6nmT/tzALm7AT/A8Vx8b+QeiFJFyEK8H/ZeOpsTfMW+mJ/gM4vVdp3yM4d1fp3Vm9V41WA8s/kP1T5a9ZuCJnoc4X5Hz0+V7sXYoznqVrtX/D/4z17Onwm4UtOFsNEd+/MFo90dY9GwLyX/GexeJsMkKxXuI5OyC/uY4fPMAg6g==
   </data>

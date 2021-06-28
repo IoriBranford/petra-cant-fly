@@ -2279,7 +2279,9 @@ return {
       offsety = 0,
       parallaxx = 1,
       parallaxy = 1,
-      properties = {},
+      properties = {
+        ["showonce"] = true
+      },
       encoding = "base64",
       compression = "zlib",
       data = "eJzFlEsOAiEQROsKmgmzmFmgXsCb6VzA9fw8gMTD2h27A0HXVCUvBAKppiF1A3AXJnD0IPm6nmT/tzALm7AT/A8Vx8b+QeiFJFyEK8H/ZeOpsTfMW+mJ/gM4vVdp3yM4d1fp3Vm9V41WA8s/kP1T5a9ZuCJnoc4X5Hz0+V7sXYoznqVrtX/D/4z17Onwm4UtOFsNEd+/MFo90dY9GwLyX/GexeJsMkKxXuI5OyC/uY4fPMAg6g=="
