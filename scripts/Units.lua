@@ -40,7 +40,9 @@ local function activateUnit(unit)
     local start
     if module then
         module = require(module)
-        setmetatable(unit, module)
+        if module.__index then
+            setmetatable(unit, module)
+        end
         local think = unit.think and module[unit.think]
         if type(think) == "function" then
             unit.think = think
