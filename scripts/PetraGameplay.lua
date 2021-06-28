@@ -120,16 +120,7 @@ end
 local function fixedupdate_play()
     local canvasw = canvas:getWidth()
     local canvash = canvas:getHeight()
-    birdtimer = birdtimer - 1
-    if birdtimer <= 0 then
-        birdtimer = birdinterval
-        local birdprefab = birdprefabs[love.math.random(#birdprefabs)]
-        Units.add_position(birdprefab, canvasw, canvash/2)
-    end
-    Units.think()
-    Units.activateAdded()
-    Units.deleteRemoved()
-    local petravelx, petravely = petra.velx, petra.vely
+    local petravelx, petravely = petra.velx, petra.vely/2
     for i = 1, #background do
         local sceneobject = background[i]
         local parallax_x = sceneobject.parallax_x
@@ -165,6 +156,15 @@ local function fixedupdate_play()
         sceneobject.x = x
         sceneobject.y = y
     end
+    birdtimer = birdtimer - 1
+    if birdtimer <= 0 then
+        birdtimer = birdinterval
+        local birdprefab = birdprefabs[love.math.random(#birdprefabs)]
+        Units.add_position(birdprefab, canvasw, canvash/2)
+    end
+    Units.think()
+    Units.activateAdded()
+    Units.deleteRemoved()
 end
 
 local function fixedupdate_gameover()

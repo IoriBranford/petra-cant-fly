@@ -28,7 +28,7 @@ function Petra:thinkPlay()
         self.sprite:setTile(self.tileset.fly)
     end
 
-    Unit.move(self, 0, self.vely, Petra.collisionFilter)
+    Unit.move(self, 0, self.vely/2, Petra.collisionFilter)
 end
 
 function Petra:thinkGameOver()
