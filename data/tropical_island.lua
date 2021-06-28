@@ -1834,7 +1834,7 @@ return {
       imageheight = 64,
       objectalignment = "topleft",
       tileoffset = {
-        x = -16,
+        x = -32,
         y = -32
       },
       grid = {
@@ -2793,7 +2793,7 @@ return {
           name = "petra",
           type = "",
           shape = "rectangle",
-          x = 112,
+          x = 128,
           y = 96,
           width = 64,
           height = 64,

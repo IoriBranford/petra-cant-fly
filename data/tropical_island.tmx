@@ -296,7 +296,7 @@
   </object>
  </objectgroup>
  <objectgroup id="24" name="startobjects">
-  <object id="17" name="petra" gid="226" x="112" y="96" width="64" height="64">
+  <object id="17" name="petra" gid="226" x="128" y="96" width="64" height="64">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
     <property name="gravity" type="float" value="0.03125"/>
