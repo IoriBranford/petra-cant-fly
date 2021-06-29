@@ -124,7 +124,7 @@
   </layer>
  </group>
  <objectgroup id="38" name="tools">
-  <object id="18" name="balloon_expand" gid="230" x="176" y="112" width="4" height="4">
+  <object id="18" name="balloon_expand" gid="230" x="176" y="112" width="8" height="8">
    <properties>
     <property name="module" value="Balloon"/>
     <property name="think" value="thinkExpand"/>
@@ -142,7 +142,7 @@
     <property name="module" value="Balloon"/>
     <property name="think" value="thinkFloat"/>
     <property name="velx" type="float" value="0"/>
-    <property name="vely" type="float" value="-2"/>
+    <property name="vely" type="float" value="-4"/>
    </properties>
   </object>
  </objectgroup>
@@ -302,7 +302,7 @@
   <object id="17" name="petra" gid="226" x="128" y="96" width="64" height="64">
    <properties>
     <property name="bodyshape" type="int" value="1"/>
-    <property name="gravity" type="float" value="0.03125"/>
+    <property name="gravity" type="float" value="0.125"/>
     <property name="module" value="Petra"/>
     <property name="start" value="start"/>
     <property name="think" value="thinkTitle"/>

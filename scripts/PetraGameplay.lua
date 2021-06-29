@@ -195,7 +195,7 @@ end
 local function startPlay()
     love.fixedupdate = fixedupdate_play
     Audio.play("data/audio/takeoff.wav")
-    petra:startPlay(3)
+    petra:startPlay(4)
 end
 
 PetraGameplay.fixedupdate = fixedupdate_title

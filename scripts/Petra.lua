@@ -13,7 +13,7 @@ end
 
 function Petra:startPlay(velx)
     self.velx = velx
-    self.vely = -1
+    self.vely = -velx
     self.sprite:setTile(self.tileset.jump)
     self.think = Petra.thinkPlay
 end

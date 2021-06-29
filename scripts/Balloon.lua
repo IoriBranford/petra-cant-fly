@@ -31,7 +31,7 @@ function Balloon:thinkFloat()
         if otherid == "petra" then
             if not self.attached then
                 petra.vely = self.vely
-                local newgravity = petra.gravity - self.scaley/128
+                local newgravity = petra.gravity - self.scaley/32
                 if newgravity > 0 then
                     self.attached = true
                     local deltax = petra.x - self.x
@@ -61,7 +61,7 @@ end
 function Balloon:pop()
     local petra = Units.get("petra")
     if self.attached then
-        petra.gravity = petra.gravity + self.scaley/128
+        petra.gravity = petra.gravity + self.scaley/32
     end
     Units.remove(self)
     local pop = Units.add_position("balloon_pop", self.x, self.y)

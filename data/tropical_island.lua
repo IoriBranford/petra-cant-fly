@@ -2398,8 +2398,8 @@ return {
           shape = "rectangle",
           x = 176,
           y = 112,
-          width = 4,
-          height = 4,
+          width = 8,
+          height = 8,
           rotation = 0,
           gid = 230,
           visible = true,
@@ -2442,7 +2442,7 @@ return {
             ["module"] = "Balloon",
             ["think"] = "thinkFloat",
             ["velx"] = 0,
-            ["vely"] = -2
+            ["vely"] = -4
           }
         }
       }
@@ -2804,7 +2804,7 @@ return {
           visible = true,
           properties = {
             ["bodyshape"] = 1,
-            ["gravity"] = 0.03125,
+            ["gravity"] = 0.125,
             ["module"] = "Petra",
             ["start"] = "start",
             ["think"] = "thinkTitle",
