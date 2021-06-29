@@ -10,7 +10,9 @@ return {
   tileheight = 32,
   nextlayerid = 39,
   nextobjectid = 21,
-  properties = {},
+  properties = {
+    ["music"] = "audio/oceanwaves.wav"
+  },
   tilesets = {
     {
       name = "tropical_island",

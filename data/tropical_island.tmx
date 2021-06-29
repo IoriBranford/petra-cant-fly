@@ -3,6 +3,9 @@
  <editorsettings>
   <export target="tropical_island.lua" format="lua"/>
  </editorsettings>
+ <properties>
+  <property name="music" type="file" value="audio/oceanwaves.wav"/>
+ </properties>
  <tileset firstgid="1" source="tilesets/tropical_island.tsx"/>
  <tileset firstgid="181" source="tilesets/birds.tsx"/>
  <tileset firstgid="226" source="tilesets/petra.tsx"/>

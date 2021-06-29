@@ -17,9 +17,9 @@ function love.load(args, unfilteredargs)
     Config.applyDisplayMode()
     Tiled.setFontPath("data/fonts/")
     love.graphics.setLineStyle("rough")
-    local files = love.filesystem.getDirectoryItems("data/sounds/")
-    for _, file in ipairs(files) do
-        Audio.load("data/sounds/"..file)
+    local files = love.filesystem.getDirectoryItems("data/audio/")
+    for _, file in pairs(files) do
+        Audio.load("data/audio/"..file)
     end
     love.event.loadphase("PetraGameplay")
 end

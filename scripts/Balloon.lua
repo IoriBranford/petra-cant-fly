@@ -1,6 +1,7 @@
 local Units = require "Units"
 local Unit = require "Unit"
 local Physics = require "Physics"
+local Audio = require "Audio"
 local Balloon = {}
 Balloon.__index = Balloon
 
@@ -40,6 +41,7 @@ function Balloon:thinkFloat()
                     self.x, self.y = petra.x, petra.y
                     self.sprite.x, self.sprite.y = petra.x, petra.y
                     petra.gravity = newgravity
+                    Audio.play("data/audio/attach.wav")
                 else
                     popped = true
                 end
@@ -65,6 +67,7 @@ function Balloon:pop()
     local pop = Units.add_position("balloon_pop", self.x, self.y)
     pop.scalex = self.scalex
     pop.scaley = self.scaley
+    Audio.play("data/audio/pop.wav")
 end
 
 function Balloon:thinkPop()

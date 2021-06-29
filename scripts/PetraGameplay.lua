@@ -54,6 +54,7 @@ function PetraGameplay.loadphase()
 end
 
 function PetraGameplay.quitphase()
+    love.audio.stop()
     Physics.clear()
     Units.clear()
     scene = nil
@@ -118,7 +119,8 @@ function PetraGameplay.loadMap(stagefile)
 
     local music = map.music
     if music then
-        Audio.playMusic(directory..music, 0)
+        music = Audio.playMusic(directory..music, 0)
+        music:setLooping(true)
     end
 end
 
@@ -192,6 +194,7 @@ end
 
 local function startPlay()
     love.fixedupdate = fixedupdate_play
+    Audio.play("data/audio/takeoff.wav")
     petra:startPlay(3)
 end
 
@@ -207,6 +210,7 @@ function PetraGameplay.mousepressed(x, y, button, istouch, presses)
         x = math.max(0, math.min(x, canvas:getWidth()))
         y = canvas:getHeight()
         expandingballoon = Units.add_position("balloon_expand", x, y)
+        expandingballoon.sound = Audio.play("data/audio/expand.wav")
     end
 end
 
@@ -223,6 +227,10 @@ end
 
 function PetraGameplay:mousereleased(x, y, button, istouch, presses)
     if expandingballoon then
+        if expandingballoon.sound then
+            expandingballoon.sound:stop()
+        end
+        Audio.play("data/audio/launch.wav")
         local balloon = Units.add_position("balloon_float", expandingballoon.x, expandingballoon.y)
         balloon.scalex = expandingballoon.scalex
         balloon.scaley = expandingballoon.scaley
@@ -230,6 +238,12 @@ function PetraGameplay:mousereleased(x, y, button, istouch, presses)
         balloon.vely = balloon.vely * balloon.scaley
         Units.remove(expandingballoon)
         expandingballoon = nil
+    end
+end
+
+function PetraGameplay:keypressed(key)
+    if key == "f2" then
+        love.event.loadphase("PetraGameplay")
     end
 end
 
