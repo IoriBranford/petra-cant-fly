@@ -20,7 +20,7 @@ end
 function Balloon:thinkFloat()
     local petra = Units.get("petra")
     if self.attached then
-        self.velx, self.vely = 0, petra.vely/2
+        self.velx, self.vely = 0, petra.vely
         self.rotation = (math.cos(self.age * math.pi / 4) - 1) * math.pi / 32
         self.sprite.r = self.rotation
     end
@@ -40,6 +40,7 @@ function Balloon:thinkFloat()
                     Physics.setBody(self.id, bx+deltax, by+deltay, bw, bh)
                     self.x, self.y = petra.x, petra.y
                     self.sprite.x, self.sprite.y = petra.x, petra.y
+                    self.velx, self.vely = 0, petra.vely
                     petra.gravity = newgravity
                     Audio.play("data/audio/attach.wav")
                 else

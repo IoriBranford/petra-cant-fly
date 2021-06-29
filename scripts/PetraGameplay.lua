@@ -12,6 +12,8 @@ local currentforegrounds
 local levelforegrounds
 local canvas
 local canvastransform
+local cameray
+local stageheight
 local petra
 local birdprefabs
 local birdinterval
@@ -27,6 +29,7 @@ function PetraGameplay.loadphase()
     levelforegrounds = {}
     birdprefabs = {}
     birdinterval = 120
+    cameray = 0
     birdtimer = birdinterval
     PetraGameplay.loadMap("data/tropical_island.lua")
 
@@ -78,7 +81,7 @@ function PetraGameplay.loadMap(stagefile)
     local stagecols = map.width
     local stagerows = map.height
     local stagewidth = stagecols * cellwidth
-    local stageheight = stagerows * cellheight
+    stageheight = stagerows * cellheight
 
     local function addLayersToScene(layers, sceneobjects)
         for i = 1, #layers do
@@ -125,47 +128,41 @@ function PetraGameplay.loadMap(stagefile)
 end
 
 local function fixedupdate_title()
+    local canvash = canvas:getHeight()
+    cameray = (petra.y / stageheight) * (stageheight - canvash)
+    if cameray < 0 then
+        cameray = 0
+    elseif cameray > stageheight - canvash then
+        cameray = stageheight - canvash
+    end
 end
 
 local function fixedupdate_play()
     Units.think()
     local canvasw = canvas:getWidth()
     local canvash = canvas:getHeight()
-    local petravelx, petravely = petra.velx, petra.vely/2
+    cameray = (petra.y / stageheight) * (stageheight - canvash)
+    if cameray < 0 then
+        cameray = 0
+    elseif cameray > stageheight - canvash then
+        cameray = stageheight - canvash
+    end
+
+    local petravelx = petra.velx
     for i = 1, #backgrounds do
         local background = backgrounds[i]
         local parallax_x = background.parallax_x
-        local parallax_y = background.parallax_y
         local x = background.x - parallax_x*petravelx
-        local y = background.y - parallax_y*petravely
         local w = background.w
-        local h = background.h
-        local miny = canvash - h
         if x <= -w then
             x = x + 2*w
         end
-        if y > 0 then
-            y = 0
-        elseif y < miny then
-            y = miny
-        end
         background.x = x
-        background.y = y
     end
     for i = 1, #currentforegrounds do
         local foreground = currentforegrounds[i]
         local x = foreground.x - petravelx
-        local y = foreground.y - petravely
-        local w = foreground.w
-        local h = foreground.h
-        local miny = canvash - h
-        if y > 0 then
-            y = 0
-        elseif y < miny then
-            y = miny
-        end
         foreground.x = x
-        foreground.y = y
     end
     local fg1, fg2 = currentforegrounds[1], currentforegrounds[2]
     if fg1.x + fg1.w <= 0 then
@@ -175,7 +172,6 @@ local function fixedupdate_play()
         fg1 = fg2
         fg2 = table.remove(levelforegrounds, love.math.random(#levelforegrounds))
         fg2.x = fg1.x + fg1.w
-        fg2.y = fg1.y
         currentforegrounds[1] = fg1
         currentforegrounds[2] = fg2
     end
@@ -183,7 +179,7 @@ local function fixedupdate_play()
     if birdtimer <= 0 then
         birdtimer = birdinterval
         local birdprefab = birdprefabs[love.math.random(#birdprefabs)]
-        Units.add_position(birdprefab, canvasw, canvash/2)
+        Units.add_position(birdprefab, canvasw, cameray + canvash/2)
     end
     Units.activateAdded()
     Units.deleteRemoved()
@@ -208,20 +204,9 @@ function PetraGameplay.mousepressed(x, y, button, istouch, presses)
     elseif not expandingballoon then
         x, y = canvastransform:inverseTransformPoint(x, y)
         x = math.max(0, math.min(x, canvas:getWidth()))
-        y = canvas:getHeight()
+        y = cameray + canvas:getHeight()
         expandingballoon = Units.add_position("balloon_expand", x, y)
         expandingballoon.sound = Audio.play("data/audio/expand.wav")
-    end
-end
-
-function PetraGameplay.mousemoved(x, y, dx, dy, istouch)
-    if expandingballoon then
-        x, y = canvastransform:inverseTransformPoint(x, y)
-        x = math.max(0, math.min(x, canvas:getWidth()))
-        expandingballoon.x = x
-        if expandingballoon.sprite then
-            expandingballoon.sprite.x = x
-        end
     end
 end
 
@@ -248,14 +233,28 @@ function PetraGameplay:keypressed(key)
 end
 
 function PetraGameplay.update(dsecs)
+    if expandingballoon then
+        local mousex, mousey = canvastransform:inverseTransformPoint(love.mouse.getPosition())
+        mousex = math.max(0, math.min(mousex, canvas:getWidth()))
+        mousey = cameray + canvas:getHeight()
+        expandingballoon.x = mousex
+        expandingballoon.y = mousey
+        if expandingballoon.sprite then
+            expandingballoon.sprite.x = mousex
+            expandingballoon.sprite.y = mousey
+        end
+    end
     scene:updateAnimations(dsecs)
 end
 
 function PetraGameplay.draw()
     love.graphics.setCanvas(canvas)
     love.graphics.clear()
+    love.graphics.push()
+    love.graphics.translate(0, -math.floor(cameray))
     scene:draw()
     -- Physics.draw()
+    love.graphics.pop()
     love.graphics.setCanvas()
 
     love.graphics.push()
