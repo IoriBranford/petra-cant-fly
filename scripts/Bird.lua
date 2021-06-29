@@ -14,7 +14,8 @@ function Bird:collisionFilter(other)
 end
 
 function Bird:think()
-    Unit.move(self, self.velx, self.vely, Bird.collisionFilter)
+    local petra = Units.get("petra")
+    Unit.move(self, self.velx, self.vely - petra.vely/2, Bird.collisionFilter)
     if self.x < 0 then
         Units.remove(self)
     end
