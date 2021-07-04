@@ -31,10 +31,10 @@ function PetraGameplay.loadphase()
     birdinterval = 120
     cameray = 0
     birdtimer = birdinterval
-    PetraGameplay.loadMap("data/tropical_island.lua")
 
     canvas = love.graphics.newCanvas(Config.basewindowwidth, Config.basewindowheight)
     canvas:setFilter("nearest", "nearest")
+    PetraGameplay.loadMap("data/tropical_island.lua")
 
     local ghw = love.graphics.getWidth() / 2
     local ghh = love.graphics.getHeight() / 2
@@ -125,6 +125,8 @@ function PetraGameplay.loadMap(stagefile)
         music = Audio.playMusic(directory..music, 0)
         music:setLooping(true)
     end
+
+    cameray = (petra.y / stageheight) * (stageheight - canvas:getHeight())
 end
 
 local function fixedupdate_title()
@@ -227,8 +229,12 @@ function PetraGameplay:mousereleased(x, y, button, istouch, presses)
 end
 
 function PetraGameplay:keypressed(key)
-    if key == "f2" then
-        love.event.loadphase("PetraGameplay")
+    if key == "escape" then
+        if love.fixedupdate == fixedupdate_title then
+            love.event.quit()
+        else
+            love.event.loadphase("PetraGameplay")
+        end
     end
 end
 
