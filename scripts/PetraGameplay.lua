@@ -4,6 +4,7 @@ local Scene = require "Scene"
 local Audio = require "Audio"
 local Config = require "Config"
 local Physics = require "Physics"
+local Time    = require "Time"
 local PetraGameplay = {}
 
 local scene
@@ -250,7 +251,7 @@ function PetraGameplay.update(dsecs)
             expandingballoon.sprite.y = mousey
         end
     end
-    scene:updateAnimations(dsecs)
+    scene:updateAnimations(dsecs*Time.FixedUpdateRate)
 end
 
 function PetraGameplay.draw()

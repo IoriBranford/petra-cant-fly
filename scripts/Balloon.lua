@@ -75,7 +75,7 @@ function Balloon:pop()
 end
 
 function Balloon:thinkPop()
-    if self.age + 1 >= math.floor(self.tile.animation.duration*60) then
+    if self.age + 1 >= math.floor(self.tile.animation.duration) then
         Units.remove(self)
     end
 end

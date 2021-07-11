@@ -156,13 +156,13 @@ function Scene:updateFromBody(id, body, fixedfrac)
     end
 end
 
-function Scene:updateAnimations(dsecs)
+function Scene:updateAnimations(dt)
     for id, sceneobject in pairs(self.byid) do
         local animation = sceneobject.animation
         if animation then
             local aframe = sceneobject.animationframe
             local atime = sceneobject.animationtime
-            aframe, atime = Tiled.getAnimationUpdate(animation, aframe, atime + dsecs)
+            aframe, atime = Tiled.getAnimationUpdate(animation, aframe, atime + dt)
             sceneobject.animationframe = aframe
             sceneobject.animationtime = atime
             sceneobject.quad = animation[aframe].tile.quad

@@ -3,18 +3,20 @@ require "Math"
 local Tiled = require "Tiled"
 local Audio = require "Audio"
 local Config = require "Config"
+local Time   = require "Time"
 
 local dsecs = 0
 local dfixed = 0
 local numfixed = 0
 local fixedfrac = 0
-local fixedrate = 60
+local fixedrate = Time.FixedUpdateRate
 local fixedlimit = 1
 local variableupdate = true
 
 function love.load(args, unfilteredargs)
     Config.load()
     Config.applyDisplayMode()
+    Tiled.animationtimeunit = "fixedupdates"
     Tiled.setFontPath("data/fonts/")
     love.graphics.setLineStyle("rough")
     local files = love.filesystem.getDirectoryItems("data/audio/")

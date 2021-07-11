@@ -1,3 +1,14 @@
+local Time = require "Time"
+local Tiled = {}
+Tiled.fontpath = ""
+Tiled.animationtimeunit = "milliseconds"
+
+local AnimationTimeUnits = {
+    milliseconds = 1,
+    seconds = 1 / 1000,
+    fixedupdates = Time.FixedUpdateRate / 1000
+}
+
 --[[
     Tile cache and map loader.
 
@@ -22,7 +33,8 @@
     tileset[i][prop]=val                Tile properties become fields of the tile*
 
     tileset[i].animation.duration       Total duration of all frames of animation, in seconds
-    tileset[i].animation[i].duration    Converted from milliseconds to seconds, LOVE's standard time unit
+                                        Optionally set Tiled.animationtimeunit="seconds" to convert to seconds
+    tileset[i].animation[i].duration    Optionally converted to seconds if Tiled.animationtimeunit=="seconds"
     tileset[i].animation[i].tile        Tile within the tileset
 
     tileset[i].shapes                   = tileset[i].objectGroup.objects
@@ -75,9 +87,6 @@
         External tilesets
         Tile layer using multiple tilesets
 ]] --
-
-local Tiled = {}
-Tiled.fontpath = ""
 
 function Tiled.clearCache()
     Tiled.tilesets = {}
@@ -168,6 +177,7 @@ function Tiled.addTileset(tileset)
         tileset[i] = tile
     end
 
+    local animationtimescale = AnimationTimeUnits[Tiled.animationtimeunit] or 1
     local tilesdata = tileset.tiles
     if not tilesdata then
         return
@@ -189,10 +199,10 @@ function Tiled.addTileset(tileset)
                 local frame = animation[f]
                 local duration = frame.duration
                 totalduration = totalduration + duration
-                frame.duration = duration / 1000
+                frame.duration = duration * animationtimescale
                 frame.tile = tileset[frame.tileid]
             end
-            animation.duration = totalduration / 1000
+            animation.duration = totalduration * animationtimescale
         end
 
         local shapes = tiledata.objectGroup
