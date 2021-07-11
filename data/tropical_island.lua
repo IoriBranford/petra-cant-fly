@@ -2807,6 +2807,7 @@ return {
             ["gravity"] = 0.125,
             ["module"] = "Petra",
             ["start"] = "start",
+            ["stringid"] = "petra",
             ["think"] = "thinkTitle",
             ["velx"] = 0,
             ["vely"] = 0

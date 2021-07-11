@@ -305,6 +305,7 @@
     <property name="gravity" type="float" value="0.125"/>
     <property name="module" value="Petra"/>
     <property name="start" value="start"/>
+    <property name="stringid" value="petra"/>
     <property name="think" value="thinkTitle"/>
     <property name="velx" type="float" value="0"/>
     <property name="vely" type="float" value="0"/>

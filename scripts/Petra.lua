@@ -1,12 +1,8 @@
-local Tiled = require "Tiled"
 local Unit = require "Unit"
-local Units = require "Units"
 local Petra = {}
-Petra.__index = Petra
-
-function Petra:start()
-    self.tileset = Tiled.tilesets[self.tile.tileset]
-end
+Petra.metatable = {
+    __index = Petra
+}
 
 function Petra:thinkTitle()
 end

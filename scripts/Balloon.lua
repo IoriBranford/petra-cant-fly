@@ -3,7 +3,9 @@ local Unit = require "Unit"
 local Physics = require "Physics"
 local Audio = require "Audio"
 local Balloon = {}
-Balloon.__index = Balloon
+Balloon.metatable = {
+    __index = Balloon
+}
 
 local function collisionFilter(id, otherid)
     return "cross"
@@ -19,6 +21,7 @@ end
 
 function Balloon:thinkFloat()
     local petra = Units.get("petra")
+    local petraid = petra.id
     if self.attached then
         self.velx, self.vely = 0, petra.vely
         self.rotation = (math.cos(self.age * math.pi / 4) - 1) * math.pi / 32
@@ -28,7 +31,7 @@ function Balloon:thinkFloat()
     local popped = self.x < 0 or self.y < 0
     for i = 1, #collisions do
         local otherid = collisions[i].other
-        if otherid == "petra" then
+        if otherid == petraid then
             if not self.attached then
                 petra.vely = self.vely
                 local newgravity = petra.gravity - self.scaley/32

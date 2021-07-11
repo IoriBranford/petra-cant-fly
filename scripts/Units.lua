@@ -1,9 +1,13 @@
-local Tiled = require "Tiled"
 local Physics = require "Physics"
+local Unit = require "Unit"
+local startDefault = Unit.startDefault
+local type = type
+local require = require
 local Units = {}
 
 local nextunitid
-local units
+local unitsbyid
+local unitsbystringid
 local thinkingunits
 local newunitqueue
 local removedunits
@@ -12,7 +16,8 @@ local unitprefabs
 
 function Units.init(scene0)
     nextunitid = 1
-    units = {}
+    unitsbyid = {}
+    unitsbystringid = {}
     thinkingunits = {}
     newunitqueue = {}
     removedunits = {}
@@ -25,7 +30,8 @@ function Units.setNextId(id)
 end
 
 function Units.clear()
-    units = nil
+    unitsbyid = nil
+    unitsbystringid = nil
     thinkingunits = nil
     newunitqueue = nil
     removedunits = nil
@@ -35,56 +41,50 @@ end
 
 local function activateUnit(unit)
     local id = unit.id
-    local x, y, z = unit.x, unit.y, unit.z
+    unitsbyid[id] = unit
+    local stringid = unit.stringid
+    if stringid then
+        unitsbystringid[stringid] = unit
+    end
+
     local module = unit.module
-    local start
-    if module then
+    local start = unit.start
+    local think = unit.think
+    local finish = unit.finish
+
+    if type(module) == "string" then
         module = require(module)
-        if module.__index then
-            setmetatable(unit, module)
-        end
-        local think = unit.think and module[unit.think]
-        if type(think) == "function" then
-            unit.think = think
-            thinkingunits[id] = unit
-        end
-        start = unit.start and module[unit.start]
     end
 
-    local tile = unit.tile
-    if not tile then
-        local tileset = unit.tileset
-        local tileid = unit.tileid
-        tile = tileset and tileid and Tiled.tilesets[tileset][tileid]
-        unit.tile = tile
-    end
-    if tile then
-        unit.sprite = scene:addAnimatedTile(id, tile, x, y, z, unit.rotation, unit.scalex, unit.scaley)
-        local bodyshape = unit.bodyshape
-        if bodyshape then
-            local shapes = tile.shapes
-            local shape = shapes and shapes[bodyshape]
-            if shape then
-                local w = shape.width or 1
-                local h = shape.height or 1
-                local ox = shape.x
-                local oy = shape.y
-                Physics.addBody(id, x+ox, y+oy, w, h)
-            end
+    if type(module) == "table" then
+        local metatable = module.metatable
+        if metatable then
+            setmetatable(unit, metatable)
         end
-    else
-        local body = unit.body
-        if body then
-            local w = unit.width or 1
-            local h = unit.height or 1
-            Physics.addBody(id, x, y, w, h)
+        if type(start) == "string" then
+            start = module[start]
+        end
+        if type(finish) == "string" then
+            finish = module[finish]
+        end
+        if type(think) == "string" then
+            think = module[think]
         end
     end
 
-    units[id] = unit
+    if type(think) == "function" then
+        unit.think = think
+        thinkingunits[id] = unit
+    end
+
+    if type(finish) == "function" then
+        unit.finish = finish
+    end
 
     if type(start) == "function" then
-        start(unit)
+        start(unit, scene)
+    else
+        startDefault(unit, scene)
     end
 
     return unit
@@ -98,13 +98,20 @@ function Units.add(base, id)
         base = unitprefabs[base]
     end
 
+    local stringid = base.stringid
+    if stringid then
+        if unitsbystringid[stringid] then
+            return nil, string.format("Duplicate unit string id %s", stringid)
+        end
+    end
+
     id = id or (base and base.id)
     if not id then
         id = nextunitid
         nextunitid = nextunitid + 1
     end
 
-    if units[id] then
+    if unitsbyid[id] then
         return nil, string.format("Duplicate unit id %s", id)
     end
 
@@ -166,12 +173,15 @@ function Units.add_id_position(base, id, x, y, z)
 end
 
 function Units.get(id)
-    return units[id]
+    if type(id) == "string" then
+        return unitsbystringid[id]
+    end
+    return unitsbyid[id]
 end
 
 function Units.remove(unit)
     if type(unit) ~= "table" then
-        removedunits[unit] = units[unit]
+        removedunits[unit] = unitsbyid[unit]
     else
         removedunits[unit.id] = unit
     end
@@ -194,7 +204,11 @@ function Units.deleteRemoved()
         if Physics.isBody(id) then
             Physics.removeBody(id)
         end
-        units[id] = nil
+        local stringid = unit.stringid
+        if stringid then
+            unitsbystringid[stringid] = nil
+        end
+        unitsbyid[id] = nil
         thinkingunits[id] = nil
         removedunits[id] = nil
     end
@@ -222,7 +236,7 @@ function Units.addPrefabs(prefabs)
 end
 
 function Units.iterate()
-    return pairs(units)
+    return pairs(unitsbyid)
 end
 
 return Units

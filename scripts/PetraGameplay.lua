@@ -115,7 +115,7 @@ function PetraGameplay.loadMap(stagefile)
     Units.addPrefabs(birdprefabs)
     Units.addPrefabs(layers.tools)
     local startobjects = layers.startobjects
-    petra = Units.add(startobjects.petra, "petra")
+    petra = Units.add(startobjects.petra)
     Units.activateAdded()
 
     Physics.addBody("ceiling", 0, -1, stagewidth, 1)

@@ -2,7 +2,8 @@ local Unit = require "Unit"
 local Units = require "Units"
 local Bird = {}
 
-function Bird:start()
+function Bird:start(scene)
+    Unit.startDefault(self, scene)
     self.velx = self.velx or -2
     self.vely = self.vely or 0
 end
