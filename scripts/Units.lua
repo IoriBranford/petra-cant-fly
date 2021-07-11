@@ -9,6 +9,7 @@ local nextunitid
 local unitsbyid
 local unitsbystringid
 local thinkingunits
+local thinkingunitsarray
 local newunitqueue
 local removedunits
 local scene
@@ -19,6 +20,7 @@ function Units.init(scene0)
     unitsbyid = {}
     unitsbystringid = {}
     thinkingunits = {}
+    thinkingunitsarray = {}
     newunitqueue = {}
     removedunits = {}
     scene = scene0
@@ -33,6 +35,7 @@ function Units.clear()
     unitsbyid = nil
     unitsbystringid = nil
     thinkingunits = nil
+    thinkingunitsarray = nil
     newunitqueue = nil
     removedunits = nil
     scene = nil
@@ -74,6 +77,7 @@ local function activateUnit(unit)
 
     if type(think) == "function" then
         unit.think = think
+        unit.thinkorder = unit.thinkorder or id
         thinkingunits[id] = unit
     end
 
@@ -90,7 +94,7 @@ local function activateUnit(unit)
     return unit
 end
 
-function Units.add(base, id)
+function Units.add(base, id, stringid)
     if type(base) ~= "table" then
         if base and not unitprefabs[base] then
             return nil, string.format("No such prefab %s", base)
@@ -98,7 +102,7 @@ function Units.add(base, id)
         base = unitprefabs[base]
     end
 
-    local stringid = base.stringid
+    stringid = stringid or (base and base.stringid)
     if stringid then
         if unitsbystringid[stringid] then
             return nil, string.format("Duplicate unit string id %s", stringid)
@@ -117,6 +121,7 @@ function Units.add(base, id)
 
     local unit = {
         id = id,
+        stringid = stringid,
         age = 0,
         width = 0,
         height = 0,
@@ -145,6 +150,7 @@ function Units.add(base, id)
         end
     end
     unit.id = id
+    unit.stringid = stringid
     newunitqueue[#newunitqueue+1] = unit
     return unit
 end
@@ -214,8 +220,22 @@ function Units.deleteRemoved()
     end
 end
 
+local function sortThinkingUnits(a, b)
+    return a.thinkorder < b.thinkorder
+end
+
 function Units.think()
+    local n = 0
     for id, unit in pairs(thinkingunits) do
+        n = n + 1
+        thinkingunitsarray[n] = unit
+    end
+    for i = #thinkingunitsarray, n+1, -1 do
+        thinkingunitsarray[i] = nil
+    end
+    table.sort(thinkingunitsarray, sortThinkingUnits)
+    for i = 1, n do
+        local unit = thinkingunitsarray[i]
         local think = unit.think
         if think then
             think(unit)
