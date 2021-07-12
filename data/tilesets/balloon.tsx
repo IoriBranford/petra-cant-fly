@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.5" tiledversion="1.7.0" name="balloon" tilewidth="32" tileheight="32" tilecount="2" columns="2" objectalignment="topleft">
- <tileoffset x="-16" y="-32"/>
+ <tileoffset x="-16" y="-16"/>
  <image source="balloon.png" width="64" height="32"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">

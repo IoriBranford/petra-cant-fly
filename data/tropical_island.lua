@@ -1997,7 +1997,7 @@ return {
       objectalignment = "topleft",
       tileoffset = {
         x = -16,
-        y = -32
+        y = -16
       },
       grid = {
         orientation = "orthogonal",
@@ -2404,6 +2404,8 @@ return {
           gid = 230,
           visible = true,
           properties = {
+            ["launchvelx"] = 0,
+            ["launchvely"] = -4,
             ["module"] = "Balloon",
             ["think"] = "thinkExpand"
           }

@@ -210,6 +210,7 @@ function PetraGameplay.mousepressed(x, y, button, istouch, presses)
         y = cameray + canvas:getHeight()
         expandingballoon = Units.add_position("balloon_expand", x, y)
         expandingballoon.sound = Audio.play("data/audio/expand.wav")
+        expandingballoon.launchvelx = -petra.velx
     end
 end
 
@@ -222,8 +223,9 @@ function PetraGameplay:mousereleased(x, y, button, istouch, presses)
         local balloon = Units.add_position("balloon_float", expandingballoon.x, expandingballoon.y)
         balloon.scalex = expandingballoon.scalex
         balloon.scaley = expandingballoon.scaley
-        balloon.velx = -petra.velx
-        balloon.vely = balloon.vely * balloon.scaley
+        balloon.rotation = expandingballoon.rotation
+        balloon.velx = expandingballoon.launchvelx
+        balloon.vely = expandingballoon.launchvely * balloon.scaley
         Units.remove(expandingballoon)
         expandingballoon = nil
     end
@@ -242,13 +244,17 @@ end
 function PetraGameplay.update(dsecs)
     if expandingballoon then
         local mousex, mousey = canvastransform:inverseTransformPoint(love.mouse.getPosition())
-        mousex = math.max(0, math.min(mousex, canvas:getWidth()))
-        mousey = cameray + canvas:getHeight()
+        local dx = expandingballoon.launchvelx
+        local dy = expandingballoon.launchvely*expandingballoon.scaley
+        mousex = math.max(0, math.min(mousex, canvas:getWidth())) + dx*4
+        mousey = cameray + canvas:getHeight() + dy*4
         expandingballoon.x = mousex
         expandingballoon.y = mousey
+        expandingballoon.rotation = math.atan2(dy, dx) - math.sin(expandingballoon.age*math.pi/2)*math.pi/16
         if expandingballoon.sprite then
             expandingballoon.sprite.x = mousex
             expandingballoon.sprite.y = mousey
+            expandingballoon.sprite.r = expandingballoon.rotation
         end
     end
     scene:updateAnimations(dsecs*Time.FixedUpdateRate)

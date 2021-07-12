@@ -11,20 +11,24 @@ local function collisionFilter(id, otherid)
     return "cross"
 end
 
+function Balloon:startExpand(scene)
+    Unit.startDefault(self, scene)
+    self:thinkExpand()
+end
+
 function Balloon:thinkExpand()
     self.scalex = math.min(1, self.scalex + 1/64)
     self.scaley = math.min(1, self.scaley + 1/64)
     self.sprite.sx, self.sprite.sy = self.scalex, self.scaley
-    self.rotation = (math.cos(self.age * math.pi / 4) - 1) * math.pi / 32
-    self.sprite.r = self.rotation
 end
 
 function Balloon:thinkFloat()
     local petra = Units.get("petra")
     local petraid = petra.id
     if self.attached then
-        self.velx, self.vely = 0, petra.vely
-        self.rotation = (math.cos(self.age * math.pi / 4) - 1) * math.pi / 32
+        self.rotation = math.atan2(-petra.vely, -petra.velx) - math.sin(self.age*math.pi/2)*math.pi/16
+        self.velx = petra.x + math.cos(self.rotation) * 16 - self.x
+        self.vely = petra.y + math.sin(self.rotation) * 16 - self.y
         self.sprite.r = self.rotation
     end
     local _, _, collisions, len = Unit.move(self, self.velx, self.vely, collisionFilter)
@@ -37,13 +41,6 @@ function Balloon:thinkFloat()
                 local newgravity = petra.gravity - self.scaley/32
                 if newgravity > 0 then
                     self.attached = true
-                    local deltax = petra.x - self.x
-                    local deltay = petra.y - self.y
-                    local bx, by, bw, bh = Physics.getBody(self.id)
-                    Physics.setBody(self.id, bx+deltax, by+deltay, bw, bh)
-                    self.x, self.y = petra.x, petra.y
-                    self.sprite.x, self.sprite.y = petra.x, petra.y
-                    self.velx, self.vely = 0, petra.vely
                     petra.gravity = newgravity
                     Audio.play("data/audio/attach.wav")
                 else
