@@ -1,7 +1,7 @@
 return {
   version = "1.5",
   luaversion = "5.1",
-  tiledversion = "1.7.0",
+  tiledversion = "1.7.1",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 32,
@@ -2407,6 +2407,8 @@ return {
             ["launchvelx"] = 0,
             ["launchvely"] = -4,
             ["module"] = "Balloon",
+            ["start"] = "start",
+            ["stringlength"] = 32,
             ["think"] = "thinkExpand"
           }
         },
@@ -2424,6 +2426,7 @@ return {
           visible = true,
           properties = {
             ["module"] = "Balloon",
+            ["start"] = "start",
             ["think"] = "thinkPop"
           }
         },
@@ -2442,6 +2445,8 @@ return {
           properties = {
             ["bodyshape"] = 1,
             ["module"] = "Balloon",
+            ["start"] = "start",
+            ["stringlength"] = 32,
             ["think"] = "thinkFloat",
             ["velx"] = 0,
             ["vely"] = -4

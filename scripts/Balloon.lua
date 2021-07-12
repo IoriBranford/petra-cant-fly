@@ -11,9 +11,29 @@ local function collisionFilter(id, otherid)
     return "cross"
 end
 
-function Balloon:startExpand(scene)
+local function draw(sceneobject)
+    local stringlength = sceneobject.stringlength
+    if stringlength then
+        local numsegments = 4
+        local segmentlength = stringlength/numsegments
+        local x, y, r = sceneobject.x, sceneobject.y, sceneobject.r
+        local cos = -math.cos(r)
+        local sin = -math.sin(r)
+        for i = 1, numsegments do
+            local dx = cos*segmentlength + love.math.random()*2 - 1
+            local dy = sin*segmentlength + love.math.random()*2 - 1
+            love.graphics.line(x, y, x+dx, y+dy)
+            x = x + dx
+            y = y + dy
+        end
+    end
+    sceneobject:drawQuad()
+end
+
+function Balloon:start(scene)
     Unit.startDefault(self, scene)
-    self:thinkExpand()
+    self.sprite.draw = draw
+    self.sprite.stringlength = self.stringlength
 end
 
 function Balloon:thinkExpand()
@@ -26,9 +46,9 @@ function Balloon:thinkFloat()
     local petra = Units.get("petra")
     local petraid = petra.id
     if self.attached then
-        self.rotation = math.atan2(-petra.vely, -petra.velx) - math.sin(self.age*math.pi/2)*math.pi/16
-        self.velx = petra.x + math.cos(self.rotation) * 16 - self.x
-        self.vely = petra.y + math.sin(self.rotation) * 16 - self.y
+        self.rotation = math.atan2(-petra.vely, -petra.velx) - math.sin(self.age*math.pi/4)*math.pi/self.stringlength/2
+        self.velx = petra.x + math.cos(self.rotation) * self.stringlength - self.x
+        self.vely = petra.y + math.sin(self.rotation) * self.stringlength - self.y
         self.sprite.r = self.rotation
     end
     local _, _, collisions, len = Unit.move(self, self.velx, self.vely, collisionFilter)

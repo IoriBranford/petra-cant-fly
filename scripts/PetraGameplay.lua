@@ -246,11 +246,11 @@ function PetraGameplay.update(dsecs)
         local mousex, mousey = canvastransform:inverseTransformPoint(love.mouse.getPosition())
         local dx = expandingballoon.launchvelx
         local dy = expandingballoon.launchvely*expandingballoon.scaley
-        mousex = math.max(0, math.min(mousex, canvas:getWidth())) + dx*4
-        mousey = cameray + canvas:getHeight() + dy*4
+        expandingballoon.rotation = math.atan2(dy, dx) - math.sin(expandingballoon.age*math.pi/4)*math.pi/expandingballoon.stringlength/2
+        mousex = math.max(0, math.min(mousex, canvas:getWidth())) + math.cos(expandingballoon.rotation)*expandingballoon.stringlength
+        mousey = cameray + canvas:getHeight() + math.sin(expandingballoon.rotation)*expandingballoon.stringlength
         expandingballoon.x = mousex
         expandingballoon.y = mousey
-        expandingballoon.rotation = math.atan2(dy, dx) - math.sin(expandingballoon.age*math.pi/2)*math.pi/16
         if expandingballoon.sprite then
             expandingballoon.sprite.x = mousex
             expandingballoon.sprite.y = mousey
