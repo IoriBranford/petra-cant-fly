@@ -39,6 +39,26 @@ local function setTile(sceneobject, tile, animated)
 end
 SceneObject.setTile = setTile
 
+local function drawQuad(sceneobject)
+    love.graphics.draw(sceneobject.drawable, sceneobject.quad,
+        math.floor(sceneobject.x), math.floor(sceneobject.y),
+        sceneobject.r,
+        sceneobject.sx, sceneobject.sy,
+        sceneobject.ox, sceneobject.oy,
+        sceneobject.kx, sceneobject.ky)
+end
+SceneObject.drawQuad = drawQuad
+
+local function drawGeneric(sceneobject)
+    love.graphics.draw(sceneobject.drawable,
+        math.floor(sceneobject.x), math.floor(sceneobject.y),
+        sceneobject.r,
+        sceneobject.sx, sceneobject.sy,
+        sceneobject.ox, sceneobject.oy,
+        sceneobject.kx, sceneobject.ky)
+end
+SceneObject.drawGeneric = drawGeneric
+
 local Scene = {}
 Scene.__index = Scene
 
@@ -54,7 +74,7 @@ function Scene:add(id, draw, drawable, quad, w, h, x, y, z, r, sx, sy, ox, oy, k
     sceneobject.id = id
     sceneobject.draw = draw
     sceneobject.drawable = drawable
-    sceneobject[drawable:type():lower()] = drawable
+    sceneobject[drawable:type()] = drawable
     sceneobject.quad = quad
     sceneobject.w = w or math.huge
     sceneobject.h = h or math.huge
@@ -72,24 +92,6 @@ function Scene:add(id, draw, drawable, quad, w, h, x, y, z, r, sx, sy, ox, oy, k
 
     self.byid[id] = sceneobject
     return sceneobject
-end
-
-local function drawQuad(sceneobject)
-    love.graphics.draw(sceneobject.drawable, sceneobject.quad,
-        math.floor(sceneobject.x), math.floor(sceneobject.y),
-        sceneobject.r,
-        sceneobject.sx, sceneobject.sy,
-        sceneobject.ox, sceneobject.oy,
-        sceneobject.kx, sceneobject.ky)
-end
-
-local function drawGeneric(sceneobject)
-    love.graphics.draw(sceneobject.drawable,
-        math.floor(sceneobject.x), math.floor(sceneobject.y),
-        sceneobject.r,
-        sceneobject.sx, sceneobject.sy,
-        sceneobject.ox, sceneobject.oy,
-        sceneobject.kx, sceneobject.ky)
 end
 
 function Scene:addChunk(id, chunk, w, h, x, y, z, r, sx, sy, ox, oy, kx, ky)
