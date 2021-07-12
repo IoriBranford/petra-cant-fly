@@ -221,7 +221,8 @@ function Units.deleteRemoved()
 end
 
 local function sortThinkingUnits(a, b)
-    return a.thinkorder < b.thinkorder
+    local ordera, orderb = a.thinkorder, b.thinkorder
+    return ordera < orderb or ordera == orderb and a.id < b.id
 end
 
 function Units.think()
